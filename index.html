@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="Marca Gifting is coming soon. Thoughtful gifts for the moments that matter."
+    />
+    <meta name="theme-color" content="#f8f6f2" />
+    <title>Coming Soon | Marca Gifting</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Playfair+Display:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="page">
+      <div class="page__frame">
+        <header class="header" aria-label="Marca Gifting">
+          <span class="header__line" aria-hidden="true"></span>
+          <span class="header__label">An invitation to give beautifully</span>
+          <span class="header__line" aria-hidden="true"></span>
+        </header>
+
+        <section class="hero" aria-labelledby="hero-title">
+          <div class="hero__copy">
+            <div class="logo-wrap">
+              <img
+                class="logo"
+                src="assets/Logo%20Design%201.svg"
+                alt="Marca Gifting"
+                width="1300"
+                height="800"
+              />
+            </div>
+
+            <div class="hero__content">
+              <p class="eyebrow"><span class="eyebrow__dot"></span> Something special is on its way</p>
+              <h1 id="hero-title">The art of giving,<br /><em>reimagined.</em></h1>
+              <p class="hero__description">
+                We're putting the finishing touches on a more thoughtful way to celebrate every moment. Marca Gifting is coming soon.
+              </p>
+              <div class="hero__note">
+                <span class="hero__note-line" aria-hidden="true"></span>
+                <span>Made for moments that matter</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="art" aria-hidden="true">
+            <div class="art__halo art__halo--outer"></div>
+            <div class="art__halo art__halo--inner"></div>
+            <span class="art__spark art__spark--one">✦</span>
+            <span class="art__spark art__spark--two">✦</span>
+            <span class="art__spark art__spark--three">✦</span>
+            <div class="gift">
+              <div class="gift__lid"></div>
+              <div class="gift__box"></div>
+              <div class="gift__ribbon gift__ribbon--vertical"></div>
+              <div class="gift__ribbon gift__ribbon--horizontal"></div>
+              <div class="gift__bow gift__bow--left"></div>
+              <div class="gift__bow gift__bow--right"></div>
+              <div class="gift__knot"></div>
+            </div>
+            <span class="art__caption">The best things are worth waiting for.</span>
+          </div>
+        </section>
+
+        <footer class="footer">
+          <span>© <span id="year">2026</span> Marca Gifting</span>
+          <span>Thoughtfully made. Soon to be shared.</span>
+        </footer>
+      </div>
+    </main>
+    <script>
+      document.getElementById('year').textContent = new Date().getFullYear();
+    </script>
+  </body>
+</html>
