@@ -321,6 +321,12 @@ h1 em {
   letter-spacing: 0.15em;
 }
 
+@media (min-width: 851px) {
+  .logo-wrap {
+    margin-left: clamp(-96px, -7.5vw, -57px);
+  }
+}
+
 @media (max-width: 850px) {
   .hero {
     grid-template-columns: 1fr;
