@@ -84,7 +84,7 @@ body {
   width: clamp(260px, 34vw, 430px);
   height: clamp(165px, 18vw, 225px);
   overflow: hidden;
-  margin: 5px 0 auto -7%;
+  margin: 5px 0 auto 0;
 }
 
 .logo {
