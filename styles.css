@@ -399,7 +399,7 @@ h1 em {
   }
 
   .eyebrow {
-    font-size: 8px;
+    display: none;
   }
 
   h1 {
