@@ -13,17 +13,19 @@
 body {
   min-width: 320px;
   margin: 0;
+  overflow: hidden;
 }
 
 .page {
-  min-height: 100vh;
+  height: 100vh;
+  height: 100svh;
   padding: 24px;
 }
 
 .page__frame {
   display: flex;
   flex-direction: column;
-  min-height: calc(100vh - 48px);
+  height: 100%;
   overflow: hidden;
   border: 1px solid #e5e0da;
   background: #fbfaf7;
@@ -68,13 +70,14 @@ body {
   display: grid;
   grid-template-columns: minmax(0, 1.04fr) minmax(0, 0.96fr);
   flex: 1;
-  min-height: 630px;
+  min-height: 0;
 }
 
 .hero__copy {
   display: flex;
   flex-direction: column;
-  padding: 0 clamp(38px, 6.5vw, 112px) 70px;
+  min-height: 0;
+  padding: 0 clamp(38px, 6.5vw, 112px);
 }
 
 .logo-wrap {
@@ -94,7 +97,6 @@ body {
 .hero__content {
   max-width: 590px;
   margin: auto 0;
-  padding-bottom: 55px;
 }
 
 .eyebrow {
@@ -155,7 +157,7 @@ h1 em {
   place-items: center;
   isolation: isolate;
   overflow: hidden;
-  min-height: 630px;
+  min-height: 0;
   background: radial-gradient(circle at 48% 44%, #f8f4fb 0%, #eee5f5 48%, #e7daee 100%);
 }
 
@@ -325,8 +327,7 @@ h1 em {
   }
 
   .hero__copy {
-    min-height: 570px;
-    padding-bottom: 20px;
+    min-height: 0;
   }
 
   .logo-wrap {
@@ -336,16 +337,11 @@ h1 em {
   }
 
   .hero__content {
-    padding-bottom: 40px;
+    margin: auto 0;
   }
 
   .art {
-    min-height: 430px;
-  }
-
-  .gift {
-    width: 270px;
-    height: 270px;
+    display: none;
   }
 }
 
@@ -355,7 +351,7 @@ h1 em {
   }
 
   .page__frame {
-    min-height: calc(100vh - 20px);
+    height: 100%;
   }
 
   .header {
@@ -371,18 +367,13 @@ h1 em {
   }
 
   .hero__copy {
-    min-height: 540px;
-    padding: 0 25px 25px;
+    padding: 0 25px;
   }
 
   .logo-wrap {
-    width: 275px;
-    height: 165px;
+    width: min(275px, 100%);
+    height: clamp(105px, 18svh, 165px);
     margin-left: -23px;
-  }
-
-  .hero__content {
-    padding-bottom: 8px;
   }
 
   .eyebrow {
@@ -390,29 +381,15 @@ h1 em {
   }
 
   h1 {
-    font-size: clamp(46px, 12vw, 64px);
+    font-size: clamp(38px, 11vw, 58px);
   }
 
   .hero__description {
-    margin: 23px 0 28px;
+    margin: 18px 0 22px;
     font-size: 14px;
   }
 
   .hero__note {
-    font-size: 8px;
-  }
-
-  .art {
-    min-height: 380px;
-  }
-
-  .gift {
-    width: 225px;
-    height: 225px;
-  }
-
-  .art__caption {
-    bottom: 20px;
     font-size: 8px;
   }
 
@@ -421,5 +398,57 @@ h1 em {
     gap: 10px;
     padding: 20px 12px;
     text-align: center;
+  }
+}
+
+@media (max-height: 820px) {
+  .header {
+    padding-top: 14px;
+    padding-bottom: 14px;
+  }
+
+  .logo-wrap {
+    height: clamp(90px, 18svh, 135px);
+  }
+
+  .eyebrow {
+    margin-bottom: 13px;
+  }
+
+  h1 {
+    font-size: clamp(36px, 4.8vw, 65px);
+  }
+
+  .hero__description {
+    margin: 15px 0 18px;
+    line-height: 1.5;
+  }
+
+  .footer {
+    padding-top: 13px;
+    padding-bottom: 13px;
+  }
+}
+
+@media (max-width: 560px) and (max-height: 700px) {
+  .hero__copy {
+    padding-right: 19px;
+    padding-left: 19px;
+  }
+
+  .logo-wrap {
+    margin-left: -18px;
+  }
+
+  h1 {
+    font-size: clamp(36px, 10vw, 48px);
+  }
+
+  .hero__description {
+    font-size: 12px;
+  }
+
+  .footer {
+    gap: 6px;
   }
 }
