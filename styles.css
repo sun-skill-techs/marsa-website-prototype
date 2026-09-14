@@ -452,3 +452,35 @@ h1 em {
     gap: 6px;
   }
 }
+
+@media (max-height: 500px) {
+  .page {
+    padding: 8px;
+  }
+
+  .header,
+  .eyebrow,
+  .hero__note {
+    display: none;
+  }
+
+  .logo-wrap {
+    width: 220px;
+    height: 78px;
+  }
+
+  h1 {
+    font-size: clamp(30px, 4vw, 42px);
+  }
+
+  .hero__description {
+    margin: 10px 0 0;
+    font-size: 12px;
+    line-height: 1.4;
+  }
+
+  .footer {
+    padding-top: 8px;
+    padding-bottom: 8px;
+  }
+}
