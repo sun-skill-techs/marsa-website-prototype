@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>B2B Corporate Gifting Platform Proposal</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --ink: #1c1512;
+    --ink-mid: #453a35;
+    --ink-muted: #8a7c74;
+    --cream: #FCF9F6;
+    --paper: #ffffff;
+    --gold: #7C2E43;
+    --gold-light: #F5E9E8;
+    --rule: #ECE4DD;
+  }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--ink);
+    font-size: 15px;
+    line-height: 1.7;
+  }
+
+  .page { max-width: 780px; margin: 0 auto; padding: 0; }
+
+  /* COVER */
+  .cover {
+    background: var(--ink);
+    color: var(--cream);
+    padding: 60px 50px 46px;
+    position: relative;
+    overflow: hidden;
+  }
+  .cover::before {
+    content: '';
+    position: absolute; top: -70px; right: -70px;
+    width: 260px; height: 260px; border-radius: 50%;
+    border: 1px solid rgba(124,46,67,0.28);
+  }
+  .cover::after {
+    content: '';
+    position: absolute; top: -26px; right: -26px;
+    width: 160px; height: 160px; border-radius: 50%;
+    border: 1px solid rgba(124,46,67,0.2);
+  }
+  .cover-tag {
+    font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase;
+    color: #D98A9A; margin-bottom: 22px;
+  }
+  .cover h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 44px; font-weight: 600; line-height: 1.1;
+    margin-bottom: 8px; color: #ffffff;
+  }
+  .cover-sub {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 20px; font-style: italic;
+    color: rgba(250,248,244,0.55); margin-bottom: 36px;
+  }
+  .cover-meta { display: flex; gap: 40px; flex-wrap: wrap; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 22px; }
+  .cover-meta-item label {
+    display: block; font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase;
+    color: #D98A9A; margin-bottom: 4px;
+  }
+  .cover-meta-item span { font-size: 14px; color: rgba(250,248,244,0.8); }
+
+  /* SECTION */
+  .section { padding: 44px 50px; background: var(--paper); }
+  .section-eyebrow {
+    font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 8px;
+  }
+  .section-title {
+    font-family: 'Cormorant Garamond', serif; font-size: 30px; font-weight: 600;
+    line-height: 1.15; margin-bottom: 20px; color: var(--ink);
+  }
+  h3 {
+    font-family: 'Cormorant Garamond', serif; font-size: 20px; font-weight: 600;
+    margin: 6px 0 12px; color: var(--ink);
+  }
+  p { margin-bottom: 14px; color: var(--ink-mid); }
+  p.intro { color: var(--ink-muted); font-size: 15px; max-width: 620px; }
+  p:last-child { margin-bottom: 0; }
+  hr { border: none; border-top: 1px solid var(--rule); }
+
+  /* CARD GRID */
+  .card-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 18px 0; }
+  .card {
+    background: var(--cream); border: 1px solid var(--rule); border-radius: 8px;
+    padding: 18px 20px;
+  }
+  .card-label {
+    font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--ink-muted); margin-bottom: 4px;
+  }
+  .card-value {
+    font-family: 'Cormorant Garamond', serif; font-size: 18px; font-weight: 600; color: var(--ink);
+  }
+  .card-flag {
+    display: inline-block; margin-top: 8px; font-size: 11px; font-weight: 500;
+    letter-spacing: 0.03em; color: var(--gold); background: var(--gold-light);
+    padding: 3px 10px; border-radius: 20px;
+  }
+  .card-desc { font-size: 13px; color: var(--ink-muted); margin-top: 6px; line-height: 1.5; }
+
+  /* PORTFOLIO CARDS */
+  .card-link { text-decoration: none; color: inherit; display: block; transition: border-color 0.15s ease; }
+  .card-link:hover { border-color: var(--gold); }
+  .card-link .card-value { display: flex; align-items: center; gap: 6px; }
+  .card-link .arrow { font-size: 14px; color: var(--gold); }
+
+  /* FEATURE BLOCK */
+  .feature-block {
+    border-left: 2px solid var(--gold); padding: 16px 20px; background: var(--cream);
+    border-radius: 0 8px 8px 0; margin: 12px 0;
+  }
+  .feature-block h5 { font-weight: 500; font-size: 14.5px; margin-bottom: 5px; color: var(--ink); }
+  .feature-block p { font-size: 13.5px; margin-bottom: 0; color: var(--ink-muted); }
+
+  /* FEATURE BLOCK — ACCORDION */
+  .accordion { padding: 0; overflow: hidden; }
+  .accordion .fb-head {
+    width: 100%; background: none; border: 0; text-align: left; cursor: pointer;
+    font-family: inherit; font-weight: 500; font-size: 14.5px; color: var(--ink);
+    padding: 14px 20px; display: flex; align-items: center; justify-content: space-between;
+    gap: 12px; transition: background .2s ease;
+  }
+  .accordion .fb-head:hover { background: var(--gold-light); }
+  .accordion .fb-icon {
+    flex-shrink: 0; font-size: 16px; line-height: 1; color: var(--gold); font-weight: 400;
+    transition: transform .3s ease;
+  }
+  .accordion.open .fb-icon { transform: rotate(45deg); }
+  .accordion .fb-body {
+    display: grid; grid-template-rows: 0fr; transition: grid-template-rows .32s ease;
+  }
+  .accordion.open .fb-body { grid-template-rows: 1fr; }
+  .accordion .fb-inner { overflow: hidden; }
+  .accordion .fb-inner p { padding: 0 20px 16px; font-size: 13.5px; color: var(--ink-muted); }
+  .accordion .fb-inner ul { margin: 0; padding: 0 20px 16px 36px; }
+  .accordion .fb-inner li { font-size: 13.5px; color: var(--ink-muted); margin-bottom: 5px; }
+
+  /* NOT INCLUDED */
+  .not-included {
+    background: var(--gold-light); border: 1px solid var(--rule); border-radius: 10px;
+    padding: 22px 24px;
+  }
+  .not-included ul { list-style: none; margin-top: 8px; }
+  .not-included li {
+    font-size: 14px; color: var(--ink); padding: 6px 0; padding-left: 18px; position: relative;
+  }
+  .not-included li::before { content: "–"; position: absolute; left: 0; color: var(--gold); }
+
+  /* TIMELINE */
+  .timeline { position: relative; padding-left: 30px; margin: 20px 0; }
+  .timeline::before {
+    content: ''; position: absolute; left: 8px; top: 6px; bottom: 6px; width: 1px; background: var(--rule);
+  }
+  .tl-item { position: relative; margin-bottom: 24px; }
+  .tl-item:last-child { margin-bottom: 0; }
+  .tl-item::before {
+    content: ''; position: absolute; left: -26px; top: 5px; width: 9px; height: 9px;
+    border-radius: 50%; background: var(--gold); border: 2px solid var(--paper); outline: 1px solid var(--gold);
+  }
+  .tl-phase { font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gold); margin-bottom: 3px; }
+  .tl-title { font-weight: 500; font-size: 14.5px; color: var(--ink); margin-bottom: 3px; }
+  .tl-desc { font-size: 13.5px; color: var(--ink-mid); line-height: 1.55; }
+  .tl-desc:only-child { padding-top: 2px; }
+
+  /* PRICE CARD */
+  .price-card { border: 1px solid var(--gold); border-width: 1.5px; border-radius: 10px; overflow: hidden; max-width: 420px; }
+  .price-header { padding: 20px 22px 16px; background: var(--ink); }
+  .price-tag { font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: #D98A9A; margin-bottom: 6px; }
+  .price-amount { font-size: 30px; font-weight: 300; color: #fff; letter-spacing: -0.02em; }
+  .price-note-inline { font-size: 12.5px; color: rgba(250,248,244,0.55); margin-top: 2px; }
+  .price-body { padding: 18px 22px; background: var(--paper); }
+  .price-feature {
+    display: flex; align-items: flex-start; gap: 8px; padding: 6px 0; font-size: 13.5px;
+    color: var(--ink-mid); border-bottom: 1px solid var(--rule);
+  }
+  .price-feature:last-child { border-bottom: none; }
+  .price-feature::before {
+    content: ''; width: 5px; height: 5px; border-radius: 50%; background: var(--gold);
+    margin-top: 8px; flex-shrink: 0;
+  }
+
+  /* TERMS BOX */
+  .terms-box {
+    background: var(--ink); color: rgba(250,248,244,0.75); border-radius: 10px;
+    padding: 20px 24px; margin-top: 18px; font-size: 13px; line-height: 1.6;
+  }
+  .terms-box strong { color: #D98A9A; font-weight: 500; }
+
+  /* TESTIMONIAL */
+  .testimonial-card {
+    background: var(--cream); border: 1px solid var(--rule); border-radius: 10px;
+    padding: 26px 28px; display: flex; align-items: center; justify-content: space-between;
+    gap: 20px; flex-wrap: wrap;
+  }
+  .testimonial-card p { margin-bottom: 0; max-width: 420px; }
+  .testimonial-btn {
+    display: inline-block; background: var(--ink); color: var(--cream); text-decoration: none;
+    padding: 12px 26px; border-radius: 30px; font-weight: 500; font-size: 13.5px;
+    letter-spacing: 0.02em; white-space: nowrap;
+  }
+
+  /* CTA */
+  .cta { text-align: center; padding: 46px 50px 46px; }
+  .cta-title {
+    font-family: 'Cormorant Garamond', serif; font-size: 24px; font-weight: 600;
+    color: var(--ink); margin-bottom: 10px; max-width: 480px; margin-left: auto; margin-right: auto;
+  }
+  .cta p { color: var(--ink-muted); margin-bottom: 20px; font-size: 14.5px; max-width: 460px; margin-left: auto; margin-right: auto; }
+  .cta a {
+    display: inline-block; background: var(--ink); color: var(--cream); text-decoration: none;
+    padding: 15px 38px; border-radius: 30px; font-weight: 500; font-size: 14.5px; letter-spacing: 0.03em;
+  }
+
+  /* FOOTER */
+  .doc-footer {
+    background: var(--ink); color: rgba(250,248,244,0.45); font-size: 12px;
+    padding: 22px 50px; display: flex; justify-content: space-between; align-items: center;
+    flex-wrap: wrap; gap: 14px; border-top: 1px solid rgba(124,46,67,0.4);
+  }
+  .doc-footer-brand { display: flex; align-items: center; gap: 8px; }
+  .doc-footer-brand .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--gold); }
+  .doc-footer-brand strong {
+    font-family: 'Cormorant Garamond', serif; font-size: 16px; font-weight: 600;
+    color: rgba(250,248,244,0.9); letter-spacing: 0.01em;
+  }
+  .doc-footer-meta { text-align: right; }
+  .doc-footer-meta label {
+    display: block; font-size: 9.5px; letter-spacing: 0.14em; text-transform: uppercase;
+    color: #D98A9A; margin-bottom: 2px;
+  }
+  .doc-footer-meta span { font-size: 12.5px; color: rgba(250,248,244,0.6); }
+
+  @media (max-width: 600px) {
+    .card-grid { grid-template-columns: 1fr; }
+    .cover, .section, .cta, .doc-footer { padding-left: 24px; padding-right: 24px; }
+    .cover h1 { font-size: 32px; }
+    .testimonial-card { flex-direction: column; align-items: flex-start; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- COVER -->
+  <div class="cover">
+    <div class="cover-tag">Sun Skill Tech · Proposal</div>
+    <h1>B2B Corporate Gifting Platform —<br>UAE &amp; KSA, Phase 1</h1>
+    <div class="cover-sub">Minimum viable, lead-generation focused build</div>
+    <div class="cover-meta">
+      <div class="cover-meta-item">
+        <label>Prepared for</label>
+        <span>Aziz</span>
+      </div>
+      <div class="cover-meta-item">
+        <label>Prepared by</label>
+        <span>Sun Skill Tech (SST)</span>
+      </div>
+      <div class="cover-meta-item">
+        <label>Date</label>
+        <span>September 2026</span>
+      </div>
+      <div class="cover-meta-item">
+        <label>Platform</label>
+        <span>Shopify</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- BRIEF -->
+  <div class="section">
+    <div class="section-eyebrow">Overview</div>
+    <h2 class="section-title">The Brief</h2>
+    <p class="intro">
+      A bright, boutique-feeling corporate gifting site for two markets on day one: English for the UAE, native Arabic for KSA. Phase 1 is deliberately light — a browsable product catalog feeding a simple "request a quote" flow to your sales team, with no checkout, no payment processing, and no account system. Phase 2 adds full e-commerce on top of this same foundation, so nothing built now gets thrown away later.
+    </p>
+  </div>
+
+  <hr>
+
+  <!-- SCOPE OF WORK -->
+  <div class="section">
+    <div class="section-eyebrow">Section 01</div>
+    <h2 class="section-title">Scope of Work</h2>
+
+    <div class="card-grid">
+      <div class="card">
+        <div class="card-label">Design</div>
+        <div class="card-value">Figma UI/UX Design</div>
+        <div class="card-desc">Fully mobile responsive across all pages. Bright, boutique retail aesthetic — white/off-white base, lifestyle imagery, spacious navigation. Designed once in a single language, with the Arabic layout applied during development.</div>
+      </div>
+      <div class="card">
+        <div class="card-label">Platform</div>
+        <div class="card-value">Multi-Region Shopify Setup</div>
+        <div class="card-desc">UAE (English) and KSA (Arabic) experiences on one store, with a region and language dropdown in the site header that visitors can switch from at any time. Category pages include simple drawer filters; product pages show images, specs, and product code.</div>
+      </div>
+      <div class="card">
+        <div class="card-label">Commerce Logic</div>
+        <div class="card-value">RFQ ("Add to Quote") Engine</div>
+        <div class="card-desc">Buyer selects a product, enters quantity, and submits contact details. No checkout, no branding/customization step, no file upload. All enquiries route to one sales team.</div>
+      </div>
+      <div class="card">
+        <div class="card-label">Product Data</div>
+        <div class="card-value">Bilingual Product Catalog</div>
+        <div class="card-desc">274 products across 40 subcategories, entered from the images and descriptions you provide, in English and professionally reviewed Arabic.</div>
+      </div>
+      <div class="card">
+        <div class="card-label">Support</div>
+        <div class="card-value">Live Chat &amp; WhatsApp</div>
+        <div class="card-desc">Human-staffed live chat via Tawk.to (free, no subscription), 8am–8pm, with offline messages captured outside those hours. WhatsApp available 24/7 via direct link.</div>
+        <span class="card-flag">Third-party app</span>
+      </div>
+      <div class="card">
+        <div class="card-label">SEO</div>
+        <div class="card-value">Technical SEO Setup</div>
+        <div class="card-desc">hreflang tags (en-ae, ar-sa), regional sitemaps &amp; robots.txt, canonical tags, bilingual meta titles/descriptions/alt tags, Google Search Console &amp; Bing setup for both regions.</div>
+      </div>
+      <div class="card">
+        <div class="card-label">Quality</div>
+        <div class="card-value">Performance, Security &amp; QA</div>
+        <div class="card-desc">Fast-loading, lean app stack, image optimization, SSL, role-based staff access, and cross-device/cross-language testing before launch.</div>
+      </div>
+      <div class="card">
+        <div class="card-label">Launch</div>
+        <div class="card-value">Handover, Training &amp; 3 Weeks Support</div>
+        <div class="card-desc">Staff training on the CMS and on Shopify's Translate &amp; Adapt tool for future Arabic edits, video guides, and full source code/access handover.</div>
+      </div>
+    </div>
+
+    <div class="feature-block accordion">
+      <button class="fb-head" type="button">Pages included in design &amp; development<span class="fb-icon">+</span></button>
+      <div class="fb-body"><div class="fb-inner"><p>Every page below is designed and built, and every one is fully mobile responsive:</p>
+      <ul>
+        <li>Homepage with visual category grid</li>
+        <li>7 main category landing pages</li>
+        <li>40 subcategory listing pages with drawer filters</li>
+        <li>Product detail page template (images, specs, product code, Add to Quote)</li>
+        <li>Quote request / enquiry page</li>
+        <li>About Us</li>
+        <li>Contact Us</li>
+        <li>Standard policy pages (Privacy Policy, Terms)</li>
+        <li>404 / not found page</li>
+      </ul></div></div>
+    </div>
+    <div class="feature-block accordion">
+      <button class="fb-head" type="button">The product taxonomy<span class="fb-icon">+</span></button>
+      <div class="fb-body"><div class="fb-inner"><p>Your finalized taxonomy covers 7 main categories, 40 subcategories, and 274 products total: Apparel (5 subcategories, 38 products), Drinkware (4, 34), Bags &amp; Luggage (5, 40), Trade Shows &amp; Events (4, 32), Office (6, 45), Tech (11, 60), and National Day/Festival/Seasonal (5, 25).</p></div></div>
+    </div>
+    <div class="feature-block accordion">
+      <button class="fb-head" type="button">Content &amp; product data<span class="fb-icon">+</span></button>
+      <div class="fb-body"><div class="fb-inner"><p>You'll provide the product images and descriptions (referenced from Mid Ocean), so our team isn't sourcing or selecting products independently. We handle formatting, bilingual entry, and upload.</p>
+      <p>So the build isn't held up waiting on content, we'll use placeholder text and images throughout development. Your final content is added as you supply it, and any content that arrives after handover can be added by your team using the video guides we provide.</p></div></div>
+    </div>
+    <div class="feature-block accordion">
+      <button class="fb-head" type="button">Design approach<span class="fb-icon">+</span></button>
+      <div class="fb-body"><div class="fb-inner"><p>To keep the timeline tight, we design each page once, in a single language, and get your approval on that. The Arabic layout and content are then applied during development, where the same approved design is mirrored for right-to-left reading. This avoids designing every screen twice and gets us into build faster.</p></div></div>
+    </div>
+    <div class="feature-block accordion">
+      <button class="fb-head" type="button">Region &amp; language selection<span class="fb-icon">+</span></button>
+      <div class="fb-body"><div class="fb-inner"><p>Visitors choose their region and language from a dropdown in the site header (UAE / English or KSA / Arabic), available on every page and switchable at any time.</p>
+      <p>We've deliberately avoided forcing an automatic redirect based on location. Location doesn't reliably indicate language preference in the Gulf, and forced redirects can interfere with how search engines crawl and index your pages, which would work against the SEO goals for this build.</p></div></div>
+    </div>
+    <div class="feature-block accordion">
+      <button class="fb-head" type="button">What &quot;Add to Quote&quot; means<span class="fb-icon">+</span></button>
+      <div class="fb-body"><div class="fb-inner"><p>No purchase happens on the site in Phase 1. A buyer selects a product and quantity, submits their contact details, and that request lands with your sales team to follow up on directly, by phone, email, or WhatsApp.</p></div></div>
+    </div>
+    <div class="feature-block accordion">
+      <button class="fb-head" type="button">Live chat, WhatsApp &amp; Arabic replies<span class="fb-icon">+</span></button>
+      <div class="fb-body"><div class="fb-inner"><p>Live chat is set up using Tawk.to, a free tool with no monthly subscription, staffed by your own team. It supports your 8am&ndash;8pm hours with offline message capture outside them, and a direct WhatsApp link gives buyers a 24/7 channel.</p>
+      <p>One thing to be clear about: automatic English&ndash;Arabic translation inside live chat is not included, and isn't available without a paid third-party tool. Incoming Arabic messages need to be read and replied to by a person. WhatsApp does let your team read an incoming Arabic message in English for free, built into the app, but replies still need either an Arabic-speaking team member or a quick manual translation before sending.</p></div></div>
+    </div>
+  </div>
+
+  <hr>
+
+  <!-- PROCESS -->
+  <div class="section">
+    <div class="section-eyebrow">Section 02</div>
+    <h2 class="section-title">How We'll Work Together</h2>
+    <p class="intro" style="margin-bottom:20px;">A clear, five-step process from kickoff to launch.</p>
+
+    <div class="timeline">
+      <div class="tl-item">
+        <div class="tl-phase">Step 01</div>
+        <div class="tl-title">Discovery &amp; Planning</div>
+        <div class="tl-desc">We map the site structure and RFQ flow, and confirm the format for your product images and descriptions.</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-phase">Step 02</div>
+        <div class="tl-title">Design</div>
+        <div class="tl-desc">Wireframes and mockups for desktop and mobile in a single language for your approval, with the Arabic layout applied during development.</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-phase">Step 03</div>
+        <div class="tl-title">Build &amp; Configuration</div>
+        <div class="tl-desc">Multi-region Shopify setup, the RFQ engine, live chat/WhatsApp, and bilingual product data entry.</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-phase">Step 04</div>
+        <div class="tl-title">Revisions</div>
+        <div class="tl-desc">You review the live store and we refine based on your feedback.</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-phase">Step 05</div>
+        <div class="tl-title">Launch &amp; Handover</div>
+        <div class="tl-desc">QA, staff training, and full source code and access handover.</div>
+      </div>
+    </div>
+  </div>
+
+  <hr>
+
+  <!-- NOT INCLUDED -->
+  <div class="section">
+    <div class="section-eyebrow">Section 03</div>
+    <h2 class="section-title">What's Not Included</h2>
+    <div class="not-included">
+      <ul>
+        <li>E-commerce checkout, cart, and payment gateway integration — reserved for Phase 2</li>
+        <li>Minimum order quantity logic, tiered bulk pricing, and company/B2B accounts — Phase 2</li>
+        <li>Custom branding options on quote requests (screen printing, UV, laser engraving, embossing, embroidery) or artwork upload</li>
+        <li>AI chatbot — Phase 1 support is human-staffed only</li>
+        <li>Off-page SEO, backlink building, or PR — a separate ongoing service, not part of the site build</li>
+        <li>A compiled, branded e-catalogue (flipbook/downloadable PDF combining supplier content) — a separate project, to be scoped and quoted once Phase 1 is live</li>
+        <li>Paid live-chat or translation subscriptions — Phase 1 uses free native tools plus manual translation where needed</li>
+      </ul>
+    </div>
+  </div>
+
+  <hr>
+
+  <!-- PORTFOLIO -->
+  <div class="section">
+    <div class="section-eyebrow">Section 04</div>
+    <h2 class="section-title">Our Work</h2>
+    <p class="intro" style="margin-bottom:20px;">We don't have an Arabic/RTL store in our public portfolio yet. The stores below are recent Shopify builds, shared so you can judge the quality and standard of our work.</p>
+    <div class="card-grid">
+      <a class="card card-link" href="https://beautionthego.com" target="_blank" rel="noopener">
+        <div class="card-label">Portfolio</div>
+        <div class="card-value">beautionthego.com <span class="arrow">↗</span></div>
+      </a>
+      <a class="card card-link" href="https://shred-ops.com" target="_blank" rel="noopener">
+        <div class="card-label">Portfolio</div>
+        <div class="card-value">shred-ops.com <span class="arrow">↗</span></div>
+      </a>
+    </div>
+
+    <h3 style="margin-top:26px;">Design References</h3>
+    <p class="intro" style="margin-bottom:16px;">The sites below are the agreed visual and structural benchmarks for this build.</p>
+    <div class="card-grid">
+      <a class="card card-link" href="https://themerchlist.com" target="_blank" rel="noopener">
+        <div class="card-label">Reference</div>
+        <div class="card-value">themerchlist.com <span class="arrow">↗</span></div>
+      </a>
+      <a class="card card-link" href="https://www.mondaymerch.com" target="_blank" rel="noopener">
+        <div class="card-label">Reference</div>
+        <div class="card-value">mondaymerch.com <span class="arrow">↗</span></div>
+      </a>
+      <a class="card card-link" href="https://swag.com" target="_blank" rel="noopener">
+        <div class="card-label">Reference</div>
+        <div class="card-value">swag.com <span class="arrow">↗</span></div>
+      </a>
+    </div>
+  </div>
+
+  <hr>
+
+  <!-- TESTIMONIALS -->
+  <div class="section">
+    <div class="section-eyebrow">Section 05</div>
+    <h2 class="section-title">Client Testimonials</h2>
+    <div class="testimonial-card">
+      <p>Hear directly from past clients about what it's like working with us.</p>
+      <a class="testimonial-btn" href="https://drive.google.com/drive/folders/1W6sqIbHEQRbaQpn16fKS-05B5TZv1kz9?usp=drive_link" target="_blank" rel="noopener">Watch Video Testimonials</a>
+    </div>
+  </div>
+
+  <hr>
+
+  <!-- PRICING -->
+  <div class="section">
+    <div class="section-eyebrow">Section 06</div>
+    <h2 class="section-title">Investment</h2>
+    <div class="price-card">
+      <div class="price-header">
+        <div class="price-tag">Flat Rate · Phase 1</div>
+        <div class="price-amount">$425</div>
+        <div class="price-note-inline">one-time project fee · 10% discount applied (from $475)</div>
+      </div>
+      <div class="price-body">
+        <div class="price-feature">Figma UI/UX design (EN &amp; AR, desktop &amp; mobile)</div>
+        <div class="price-feature">Multi-region Shopify setup with geo-based locale defaults</div>
+        <div class="price-feature">RFQ ("Add to Quote") engine, no third-party app</div>
+        <div class="price-feature">Bilingual product catalog: 274 products across 40 subcategories</div>
+        <div class="price-feature">Live chat &amp; WhatsApp setup, human-staffed</div>
+        <div class="price-feature">Technical SEO for both regions</div>
+        <div class="price-feature">Performance optimization, security setup &amp; cross-device/language QA</div>
+        <div class="price-feature">Staff training, video guides &amp; full handover</div>
+        <div class="price-feature">3 weeks of support after delivery and acceptance</div>
+        <div class="price-feature">3 revision rounds included</div>
+      </div>
+    </div>
+    <div class="terms-box">
+      <strong>Content:</strong> Development proceeds using placeholder content, with your final images and descriptions added as they're supplied. Pricing assumes content arrives in an organized, ready-to-use format.<br><br><strong>Support:</strong> 3 weeks of support is included after the project is delivered and accepted, covering fixes and minor content or image updates within this scope of work. New features or additional pages fall outside it and would be quoted separately.<br><br><strong>Live chat:</strong> Set up on Tawk.to's free plan, with no subscription cost. Automatic English–Arabic translation inside chat is not included and would require a paid third-party tool; if you'd like that added later, we'll confirm the option and cost with you first.
+    </div>
+  </div>
+
+  <hr>
+
+  <!-- TIMELINE -->
+  <div class="section">
+    <div class="section-eyebrow">Section 07</div>
+    <h2 class="section-title">Timeline</h2>
+    <p class="intro" style="margin-bottom:20px;">Estimated 17–20 business days from kickoff.</p>
+    <div class="timeline">
+      <div class="tl-item">
+        <div class="tl-desc">Discovery, scope confirmation, and Figma wireframes for your approval.</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-desc">Design refinement across both languages and devices.</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-desc">Multi-region Shopify build and RFQ engine development.</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-desc">Bilingual product catalog entry across all 274 products, using the images and descriptions you provide.</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-desc">Live chat, WhatsApp, and technical SEO setup.</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-desc">Cross-device and cross-language QA, performance tuning.</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-desc">Staff training, launch, and handover.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CTA -->
+  <div class="cta">
+    <div class="cta-title">Ready to move forward?</div>
+    <p>Message us to confirm and we'll get Phase 1 underway.</p>
+    <a href="https://fiverr.com/inbox/sunskilltechs">Get Started</a>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="doc-footer">
+    <div class="doc-footer-brand">
+      <span class="dot"></span>
+      <strong>Sun Skill Tech</strong>
+    </div>
+    <div class="doc-footer-meta">
+      <label>Prepared for</label>
+      <span>Aziz · September 2026</span>
+    </div>
+  </div>
+
+</div>
+<script>
+  document.querySelectorAll('.accordion .fb-head').forEach(function (head) {
+    head.addEventListener('click', function () {
+      head.parentElement.classList.toggle('open');
+    });
+  });
+</script>
+</body>
+</html>
