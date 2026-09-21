@@ -1,79 +1,886 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta
-      name="description"
-      content="MARSA Gifting is coming soon. Thoughtful gifts for the moments that matter."
-    />
-    <meta name="theme-color" content="#f8f6f2" />
-    <title>Coming Soon | MARSA Gifting</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Playfair+Display:wght@400;500&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="styles.css" />
-  </head>
-  <body>
-    <main class="page">
-      <div class="page__frame">
-        <header class="header" aria-label="MARSA Gifting">
-          <span class="header__line" aria-hidden="true"></span>
-          <span class="header__label">An invitation to give beautifully</span>
-          <span class="header__line" aria-hidden="true"></span>
-        </header>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://cdn.fontshare.com" crossorigin>
+<link href="https://api.fontshare.com/v2/css?f[]=general-sans@500,600,700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script src="./image-slot.js"></script>
+<style>
+body{margin:0;background:#fff;color:#0F1029;font-family:'Inter',sans-serif;-webkit-font-smoothing:antialiased}
+h1,h2,h3,h4,h5,h6,.font-display{font-family:'General Sans','Inter',sans-serif}
+a{color:#312e81;text-decoration:none}a:hover{color:#8b5cf6}
+*{box-sizing:border-box}
+@keyframes marsaFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+/* Rotating announcement bar */
+.marquee{overflow:hidden;max-width:100vw}
+.marquee__track{display:flex;width:max-content;gap:56px;padding-right:56px;animation:marsaMarquee 38s linear infinite}
+.marquee:hover .marquee__track{animation-play-state:paused}
+.marquee__item{display:inline-flex;align-items:center;gap:9px;white-space:nowrap}
+.marquee__item svg{flex:none;opacity:.85}
+@keyframes marsaMarquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+@media(prefers-reduced-motion:reduce){.marquee__track{animation:none;justify-content:center;width:100%;flex-wrap:wrap;gap:28px;padding-right:0}.marquee__track>.marquee__item:nth-child(n+4){display:none}}
 
-        <section class="hero" aria-labelledby="hero-title">
-          <div class="hero__copy">
-            <div class="logo-wrap">
-              <img
-                class="logo"
-                src="assets/Logo%20Design%201.svg"
-                alt="MARSA Gifting"
-                width="1300"
-                height="800"
-              />
-            </div>
+image-slot::part(ring){display:none}
 
-            <div class="hero__content">
-              <h1 id="hero-title">Transforming standard swag into <em>unforgettable</em> brand statements.</h1>
-              <p class="hero__description">
-                We're putting the finishing touches on a more thoughtful way to celebrate every moment. MARSA Gifting is coming soon.
-              </p>
-              <div class="hero__note">
-                <span class="hero__note-line" aria-hidden="true"></span>
-                <span>Made for moments that matter</span>
+/* Header */
+.site-header{background:#fff;position:sticky;top:0;z-index:40;box-shadow:0 1px 0 #ECEAF4}
+.header-main{max-width:1240px;margin:0 auto;padding:0 28px;display:flex;align-items:center;gap:24px;height:78px}
+.header-logo{display:flex;align-items:center;flex-shrink:0}
+.header-logo img{height:46px;width:auto;display:block}
+.header-search{flex:1;display:flex;align-items:center;gap:10px;background:#F4F3FA;border:1px solid #E6E3F1;border-radius:999px;padding:0 8px 0 18px;height:46px;max-width:520px;margin:0 auto}
+.header-search input{flex:1;border:0;background:transparent;font:inherit;font-size:14px;color:#0F1029;outline:none;min-width:0}
+.header-actions{display:flex;align-items:center;gap:10px;flex-shrink:0}
+.header-icon,.menu-toggle{display:none;width:42px;height:42px;align-items:center;justify-content:center;background:#fff;border:1px solid #E6E3F1;border-radius:50%;color:#0F1029;cursor:pointer}
+.mobile-drawer{display:none}
+.hero-usps{display:flex;gap:18px;flex-wrap:nowrap;font-size:12.5px;color:#5B5A75;font-weight:500;white-space:nowrap}
+.hero-usps span{display:flex;align-items:center;gap:6px}
+.hero-usps svg{flex:none}
+@media(max-width:1040px){.hero-usps{gap:12px;font-size:11.5px}}
+@media(max-width:980px){
+  .header-main{height:66px;padding:0 18px;gap:10px;position:relative}
+  .header-logo{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%)}.header-logo img{height:38px}
+  .header-search,.header-region,.desktop-nav{display:none!important}
+  .header-icon,.menu-toggle{display:inline-flex}
+  .header-actions{margin-left:auto}
+  .header-quote{width:42px;height:42px;padding:0!important;justify-content:center}
+  .header-quote__label{display:none}
+  .header-quote__count{position:absolute;top:-4px;right:-4px;border:2px solid #fff}
+  .header-quote{position:relative}
+  .mobile-drawer{display:block;position:absolute;top:100%;left:0;right:0;height:calc(100vh - 66px);background:#fff;z-index:38;padding:18px;overflow-y:auto;transform:translateX(-100%);visibility:hidden;transition:transform .25s ease,visibility .25s}
+  .site-header[data-menu-open] .mobile-drawer{transform:translateX(0);visibility:visible}
+  .mobile-search{display:flex;align-items:center;gap:10px;background:#F4F3FA;border:1px solid #E6E3F1;border-radius:14px;padding:0 14px;height:48px;margin-bottom:18px}
+  .mobile-search input{flex:1;min-width:0;border:0;background:transparent;outline:0;font:inherit;font-size:14px}
+  .mobile-nav{display:flex;flex-direction:column}
+  .mobile-nav a{display:flex;align-items:center;justify-content:space-between;padding:15px 2px;border-bottom:1px solid #ECEAF4;color:#0F1029;font-size:16px;font-weight:500}
+  .mobile-region{margin-top:22px;width:100%;display:flex;align-items:center;justify-content:center;gap:8px;background:#fff;border:1px solid #E6E3F1;border-radius:999px;padding:11px 14px;font:inherit;font-size:13px;font-weight:600;color:#0F1029}
+  body.mobile-menu-open{overflow:hidden}
+  .hero-usps{width:100%;justify-content:space-between;gap:10px;font-size:11px}
+}
+@media(max-width:600px){
+  .header-logo img{height:34px}
+  .header-icon,.menu-toggle,.header-quote{width:38px;height:38px}
+  .hero-usps{font-size:10.5px;gap:8px}.hero-usps svg{width:14px;height:14px}
+}
+@media(max-width:430px){.hero-usps{font-size:9.5px;letter-spacing:-.02em;gap:5px}.hero-usps span{gap:4px}}
+@media(max-width:700px){
+  .hero-inner{padding:46px 20px 56px!important;grid-template-columns:1fr!important;gap:30px!important}
+  .hero-copy h1{font-size:clamp(30px,9vw,40px)!important}
+  .hero-copy>div:first-child{white-space:normal!important;line-height:1.35}
+  .hero-art{min-height:0!important}
+  .hero-art img{border-radius:20px!important}
+  #categories{padding:64px 20px 32px!important}
+  .pslider__viewport{overflow:visible}
+  .pslider{overflow:hidden;margin-right:-20px}
+  h2{font-size:clamp(24px,6vw,32px)!important}
+  .hero-ctas{flex-wrap:nowrap!important}
+  .hero-ctas a{padding:12px 10px!important;font-size:12.5px!important;flex:1;text-align:center;white-space:normal!important}
+}
+
+/* Mega menu */
+.nav-row{max-width:1240px;margin:0 auto;padding:0 28px;display:flex;gap:6px;justify-content:center;flex-wrap:wrap;font-size:14px;font-weight:600;min-height:48px;align-items:center}
+.nav-item{position:static}
+.nav-link{display:flex;align-items:center;gap:6px;color:#0F1029;padding:7px 14px;border-radius:999px;background:none;border:0;font:inherit;cursor:pointer;transition:background .18s ease,color .18s ease}
+.nav-link:hover,.nav-item[data-open] .nav-link{background:#F4F3FA;color:#312e81}
+.nav-link--accent{color:#8b5cf6}
+.mega{position:absolute;left:0;right:0;top:100%;background:#fff;border-top:1px solid #ECEAF4;box-shadow:0 22px 48px rgba(15,16,41,.10);opacity:0;visibility:hidden;transform:translateY(-6px);transition:opacity .2s ease,transform .2s ease,visibility .2s;z-index:30}
+.nav-item[data-open] .mega{opacity:1;visibility:visible;transform:translateY(0)}
+.mega__inner{max-width:1240px;margin:0 auto;padding:36px 28px 40px;display:grid;grid-template-columns:minmax(200px,248px) minmax(0,1fr);gap:48px}
+.mega__title{font-family:'General Sans','Inter',sans-serif;font-size:21px;font-weight:600;letter-spacing:-.02em;margin:0 0 18px;color:#0F1029}
+.mega__subs{display:flex;flex-direction:column;gap:2px;margin-bottom:20px}
+.mega__sub{font-size:14.5px;font-weight:400;color:#6B6880;padding:5px 0;transition:color .15s ease}
+.mega__sub:hover{color:#312e81}
+.mega__all{align-self:flex-start;font-size:14px;font-weight:600;color:#0F1029;border-bottom:1.5px solid #0F1029;padding-bottom:2px}
+.mega__all:hover{color:#312e81;border-color:#312e81}
+.mega__cards{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:22px}
+.mega__card{display:flex;flex-direction:column;gap:12px}
+.mega__thumb{position:relative;border-radius:14px;overflow:hidden;background:#F4F3FA;aspect-ratio:1/1}
+.mega__thumb img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;padding:14%;box-sizing:border-box;mix-blend-mode:multiply;transition:transform .25s ease}
+.mega__card:hover .mega__thumb img{transform:scale(1.05)}
+.mega__ph{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:#C9C6D8}
+.mega__cardname{font-size:14.5px;font-weight:600;color:#0F1029;line-height:1.3}
+.mega__card:hover .mega__ph{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:#C9C6D8}
+.mega__cardname{color:#312e81}
+.mega__cardsub{font-size:13.5px;color:#6B6880;line-height:1.35}
+@media(max-width:980px){.mega{display:none}}
+
+/* Product slider: 4 per view, rest scroll */
+.pslider{position:relative}
+.pslider__viewport{overflow:hidden}
+.pslider__track{display:flex;gap:24px;transition:transform .45s cubic-bezier(.22,.61,.36,1);will-change:transform}
+.pslider__track>*{flex:0 0 calc((100% - 72px)/4)}
+@media(max-width:1100px){.pslider__track>*{flex:0 0 calc((100% - 48px)/3)}}
+@media(max-width:820px){.pslider__track>*{flex:0 0 calc((100% - 24px)/2)}}
+@media(max-width:520px){.pslider__track{gap:16px}.pslider__track>*{flex:0 0 78%}}
+@media(max-width:700px){.pslider-prev,.pslider-next,.rev-prev,.rev-next{display:none}}
+
+
+/* Reviews slider */
+.rev-viewport{overflow:hidden}
+.rev-track{display:flex;gap:20px;transition:transform .45s cubic-bezier(.22,.61,.36,1);will-change:transform}
+.rev-card{flex:0 0 calc((100% - 40px)/3);background:#fff;border:1px solid #ECEAF4;border-radius:22px;padding:28px 26px;display:flex;flex-direction:column;gap:16px}
+.rev-stars{display:flex;gap:3px}
+.rev-quote{margin:0;font-size:15.5px;line-height:1.6;color:#0F1029;text-wrap:pretty;flex:1}
+.rev-person{display:flex;align-items:center;gap:12px}
+.rev-avatar{width:42px;height:42px;flex:none;border-radius:50%;background:linear-gradient(135deg,#312e81,#8b5cf6);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13.5px}
+.rev-name{display:block;font-weight:700;font-size:14px}
+.rev-role{display:block;color:#5B5A75;font-size:13px}
+@media(max-width:980px){.rev-card{flex:0 0 calc((100% - 20px)/2)}}
+@media(max-width:640px){.rev-card{flex:0 0 100%}}
+
+/* FAQ */
+.faq-layout{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:48px;align-items:stretch}
+.faq-col{display:flex;flex-direction:column}
+/* Fixed ratio, not flex:1 — a stretching box re-crops the image every time
+   a FAQ opens, which reads as the picture zooming in. */
+.faq-media{border-radius:22px;overflow:hidden;background:#F4F3FA;aspect-ratio:4/5;position:sticky;top:150px}
+.faq-list{justify-content:space-between}
+.faq-items{display:flex;flex-direction:column}
+.faq-item{border-bottom:1px solid #ECEAF4}
+.faq-item:first-child{border-top:1px solid #ECEAF4}
+.faq-q{list-style:none;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:15px 2px;font-weight:500;font-size:15px;line-height:1.35;color:#0F1029}
+.faq-q::-webkit-details-marker{display:none}
+.faq-q:hover{color:#312e81}
+.faq-icon{flex:none;width:22px;height:22px;display:flex;align-items:center;justify-content:center;color:#312e81;transition:transform .3s ease}
+.faq-item[open] .faq-icon{transform:rotate(45deg)}
+/* Smooth open/close: the wrapper animates its grid row from 0fr to 1fr. */
+.faq-panel{display:grid;grid-template-rows:0fr;transition:grid-template-rows .32s cubic-bezier(.22,.61,.36,1)}
+.faq-item[open] .faq-panel{grid-template-rows:1fr}
+.faq-panel>div{overflow:hidden}
+.faq-a{padding:0 38px 16px 2px;color:#5B5A75;font-size:14px;line-height:1.6;text-wrap:pretty}
+@media(max-width:860px){.faq-layout{grid-template-columns:1fr;gap:28px}.faq-media{aspect-ratio:16/10;position:static}.faq-list{gap:28px}}
+@media(prefers-reduced-motion:reduce){.faq-panel{transition:none}}
+
+/* Product card */
+.pcard{display:flex;flex-direction:column;gap:0;position:relative}
+.pcard__media{position:relative;display:block;border-radius:18px;overflow:hidden;background:#F1F0EE;aspect-ratio:3/4}
+.pcard__media image-slot{position:absolute;inset:0}
+.pcard__media image-slot::part(frame){background:transparent}
+.pcard__media image-slot::part(image){mix-blend-mode:multiply}
+.pcard__badge{position:absolute;top:14px;left:14px;z-index:2;background:#EEECFA;border:1px solid #DCD7F5;color:#312e81;font-size:11px;font-weight:700;padding:5px 11px;border-radius:999px;letter-spacing:.03em}
+.pcard__quick{position:absolute;left:14px;right:14px;bottom:14px;z-index:2;border:0;border-radius:999px;background:linear-gradient(135deg,#312e81,#8b5cf6);color:#fff;font:inherit;font-size:13.5px;font-weight:600;padding:10px 16px;cursor:pointer;opacity:0;transform:translateY(8px);transition:opacity .2s ease,transform .2s ease,filter .2s ease}
+.pcard__media:hover .pcard__quick,.pcard__media:focus-within .pcard__quick{opacity:1;transform:translateY(0)}
+.pcard__quick:hover{filter:brightness(1.08)}
+@media(max-width:700px){.pcard__quick{left:auto;right:8px;bottom:8px;width:30px;height:30px;padding:0;font-size:0;display:flex;align-items:center;justify-content:center}.pcard__quick::before{content:"+";font-size:18px;line-height:1}}
+.pcard__swatches{display:flex;align-items:center;gap:6px;min-height:15px;margin:8px 0 0}
+.pcard__swatch{width:12px;height:12px;border-radius:50%;background:var(--swatch);border:1px solid rgba(15,16,41,.16);box-shadow:0 0 0 1px #fff inset}
+.pcard__title{margin-top:14px;font-weight:600;font-size:14.5px;line-height:1.25;color:#0F1029;display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;margin-bottom:2px}
+.pcard__title:hover{color:#312e81}
+.pcard__price{font-size:12.5px;line-height:1.3;color:#6B6880}
+@media(hover:none){.pcard__quick{opacity:1;transform:none}}
+.collection-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));grid-auto-rows:186px;gap:16px}
+.collection-card{position:relative;overflow:hidden;border-radius:24px;background:var(--card-bg);color:#0F1029;border:1px solid rgba(15,16,41,0.08);display:block;transition:transform .22s ease,box-shadow .22s ease,border-color .22s ease}
+.collection-card:hover{color:#0F1029;transform:translateY(-4px);box-shadow:0 18px 46px rgba(49,46,129,0.14);border-color:rgba(15,16,41,0.14)}
+.collection-card--tall{grid-row:span 2}
+.collection-card--wide{grid-column:span 2}
+.collection-card__art{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;padding:14px 14px 52px}
+.collection-card--tall .collection-card__art{padding:18px 18px 56px}
+.collection-card--wide .collection-card__art{padding:16px 20px 52px}
+.collection-card__art img{width:100%;height:100%;object-fit:contain;display:block;mix-blend-mode:multiply;transition:transform .25s ease}
+.collection-card:hover .collection-card__art img{transform:scale(1.04)}
+.collection-card__copy{position:absolute;left:0;right:0;bottom:0;z-index:2;padding:26px 18px 16px;display:flex;align-items:flex-end;justify-content:space-between;gap:12px;background:linear-gradient(to top,var(--card-bg) 36%,transparent)}
+.collection-card__title{font-size:clamp(14px,1vw,16px);line-height:1.2;letter-spacing:-.015em;margin:0;font-weight:500;color:#0F1029}
+.collection-card--tall .collection-card__title,.collection-card--wide .collection-card__title{font-size:clamp(16px,1.3vw,19px)}
+.collection-card__arrow{flex:none;width:36px;height:36px;border-radius:999px;display:inline-flex;align-items:center;justify-content:center;background:rgba(255,255,255,0.78);color:var(--card-accent);transition:transform .22s ease,background .22s ease,color .22s ease}
+.collection-card__arrow svg{width:17px;height:17px;display:block}
+.collection-card:hover .collection-card__arrow{background:var(--card-accent);color:#fff;transform:translate(3px,-3px)}
+@media(max-width:900px){.collection-grid{grid-template-columns:repeat(2,minmax(0,1fr));grid-auto-rows:176px}.collection-card--wide{grid-column:span 2}.collection-card--tall{grid-row:span 2}}
+@media(max-width:600px){.collection-grid{grid-template-columns:repeat(2,minmax(0,1fr));grid-auto-rows:150px;gap:10px}.collection-card,.collection-card--tall,.collection-card--wide{grid-column:span 1;grid-row:span 1}.collection-card__art,.collection-card--tall .collection-card__art,.collection-card--wide .collection-card__art{padding:10px 10px 44px}}
+
+/* Footer */
+.site-footer{position:relative;overflow:hidden;background:#0F1029;color:rgba(255,255,255,0.62)}
+.site-footer::before{content:"";position:absolute;left:0;right:0;top:0;height:3px;background:linear-gradient(90deg,#312e81,#8b5cf6,#b794ff)}
+.site-footer__glow{position:absolute;inset:0;pointer-events:none;background:radial-gradient(680px 320px at 88% 0%,rgba(139,92,246,.22),transparent 65%),radial-gradient(520px 300px at 4% 100%,rgba(49,46,129,.35),transparent 65%)}
+.site-footer__inner{position:relative;max-width:1240px;margin:0 auto;padding:0 28px}
+.foot-top{display:grid;grid-template-columns:1.5fr 1fr 1fr 1.3fr;gap:48px;padding:72px 0 48px}
+.foot-tagline{margin:0 0 24px;max-width:300px;font-size:14px;line-height:1.65}
+.foot-social{display:flex;gap:10px}
+.foot-social a{width:38px;height:38px;border-radius:999px;display:inline-flex;align-items:center;justify-content:center;color:rgba(255,255,255,.72);background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);transition:background .2s ease,color .2s ease,transform .2s ease,border-color .2s ease}
+.foot-social a:hover{color:#fff;background:linear-gradient(135deg,#312e81,#8b5cf6);border-color:transparent;transform:translateY(-2px)}
+.foot-col{display:flex;flex-direction:column;gap:11px;font-size:14px}
+.foot-head{color:#fff;font-weight:700;font-size:12px;letter-spacing:.14em;text-transform:uppercase;margin-bottom:8px}
+.foot-col>a{color:rgba(255,255,255,.62);width:fit-content;transition:color .18s ease,transform .18s ease}
+.foot-col>a:hover{color:#fff;transform:translateX(3px)}
+.foot-contactrow{display:flex;align-items:center;gap:12px}
+.foot-contactrow:hover{transform:none}
+.foot-ico{flex:none;width:34px;height:34px;border-radius:10px;display:inline-flex;align-items:center;justify-content:center;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);color:#b794ff;transition:background .2s ease,color .2s ease}
+.foot-contactrow:hover .foot-ico{background:linear-gradient(135deg,#312e81,#8b5cf6);color:#fff;border-color:transparent}
+.foot-clabel{display:block;color:#fff;font-weight:600;font-size:14px;line-height:1.3}
+.foot-csub{display:block;font-size:12.5px;color:rgba(255,255,255,.48);line-height:1.4}
+.foot-bar{border-top:1px solid rgba(255,255,255,.1);padding:22px 0;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:14px;font-size:12.5px;color:rgba(255,255,255,.45)}
+.foot-regions{display:flex;gap:8px;flex-wrap:wrap}
+.foot-chip{display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:999px;padding:5px 12px;font-size:12px;color:rgba(255,255,255,.7)}
+.foot-legal{display:flex;gap:20px}
+.foot-legal a{color:rgba(255,255,255,.45)}
+.foot-legal a:hover{color:#fff}
+@media(max-width:980px){.foot-top{grid-template-columns:repeat(2,minmax(0,1fr));gap:36px;padding:56px 0 40px}}
+@media(max-width:560px){.foot-top{grid-template-columns:1fr}.foot-bar{justify-content:flex-start}}
+@media(max-width:700px){.seasonal-media{order:-1}}
+@media(max-width:980px){[style*="max-width:1240px"],.site-footer__inner{padding-left:12px!important;padding-right:12px!important}
+  .header-main{padding:0 12px!important}}
+</style>
+</helmet>
+<div style="min-height:100vh;background:#fff;font-family:'Inter',sans-serif;color:#0F1029;font-size:15px;line-height:1.55">
+
+<sc-if value="{{ showAnnouncement }}" hint-placeholder-val="{{ true }}">
+<div style="background:linear-gradient(90deg,#1e1b5e 0%,#312e81 35%,#8b5cf6 75%,#b794ff 100%);color:#fff;font-size:13px;font-weight:500;padding:10px 0;overflow:hidden">
+  <div class="marquee">
+    <div class="marquee__track">
+      <span class="marquee__item"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>Quotes back within 24 hours</span>
+      <span class="marquee__item"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 3h15v13H1z"/><path d="M16 8h4l3 3v5h-7z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>Delivered door to door across the UAE and Saudi Arabia</span>
+      <span class="marquee__item"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 12v10H4V12"/><path d="M2 7h20v5H2z"/><path d="M12 22V7"/><path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"/><path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"/></svg>274 products across 40 subcategories</span>
+      <span class="marquee__item"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 2 7l10 5 10-5z"/><path d="m2 17 10 5 10-5"/><path d="m2 12 10 5 10-5"/></svg>A digital proof with every quote, before anything is printed</span>
+      <span class="marquee__item"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.4 8.4 0 0 1-9 8.4 8.5 8.5 0 0 1-3.8-.9L3 21l1.9-5.1A8.4 8.4 0 0 1 12 3a8.4 8.4 0 0 1 9 8.5z"/></svg>A bilingual team, in English and Arabic</span>
+      <span class="marquee__item" aria-hidden="true"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>Quotes back within 24 hours</span>
+      <span class="marquee__item" aria-hidden="true"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 3h15v13H1z"/><path d="M16 8h4l3 3v5h-7z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>Delivered door to door across the UAE and Saudi Arabia</span>
+      <span class="marquee__item" aria-hidden="true"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 12v10H4V12"/><path d="M2 7h20v5H2z"/><path d="M12 22V7"/><path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"/><path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"/></svg>274 products across 40 subcategories</span>
+      <span class="marquee__item" aria-hidden="true"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 2 7l10 5 10-5z"/><path d="m2 17 10 5 10-5"/><path d="m2 12 10 5 10-5"/></svg>A digital proof with every quote, before anything is printed</span>
+      <span class="marquee__item" aria-hidden="true"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.4 8.4 0 0 1-9 8.4 8.5 8.5 0 0 1-3.8-.9L3 21l1.9-5.1A8.4 8.4 0 0 1 12 3a8.4 8.4 0 0 1 9 8.5z"/></svg>A bilingual team, in English and Arabic</span>
+    </div>
+  </div>
+</div>
+</sc-if>
+
+<header class="site-header">
+  <div class="header-main">
+    <button type="button" class="menu-toggle" aria-label="Open menu" aria-expanded="false"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+    <a href="./index.html" class="header-logo"><img src="./assets/logo.svg" alt="Marsa Gifting"></a>
+    <div class="header-search" style-focus="border-color:#8b5cf6">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#6B6880" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"></circle><path d="m20 20-3.5-3.5"></path></svg>
+      <input type="text" placeholder="Search bottles, hoodies, power banks…" style="flex:1;border:0;background:transparent;font:inherit;font-size:14px;color:#0F1029;outline:none;min-width:0">
+      <span style="background:linear-gradient(135deg,#312e81,#8b5cf6);color:#fff;border-radius:999px;padding:7px 14px;font-size:12.5px;font-weight:600;white-space:nowrap">Search</span>
+    </div>
+    <div class="header-actions">
+      <button type="button" class="header-icon search-toggle" aria-label="Open search"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"></circle><path d="m20 20-3.5-3.5"></path></svg></button>
+      <button onClick="{{ toggleRegion }}" class="header-region" style="display:flex;align-items:center;gap:8px;background:#fff;border:1px solid #E6E3F1;border-radius:999px;padding:9px 14px;font:inherit;font-size:13px;font-weight:600;color:#0F1029;cursor:pointer;white-space:nowrap" style-hover="border-color:#8b5cf6">
+        <span style="font-size:15px;line-height:1">{{ regionFlag }}</span>{{ regionLabel }}<span style="color:#6B6880;font-size:11px">▾</span>
+      </button>
+      <a href="#" class="header-quote" style="display:flex;align-items:center;gap:8px;background:linear-gradient(135deg,#312e81,#8b5cf6);color:#fff;border-radius:999px;padding:11px 18px;font-size:13.5px;font-weight:600;white-space:nowrap" style-hover="color:#fff;filter:brightness(1.08)" aria-label="My quote">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2"></path><rect x="9" y="3" width="6" height="4" rx="1"></rect><path d="m9 14 2 2 4-4"></path></svg>
+        <span class="header-quote__label">My Quote</span><span class="header-quote__count" style="background:#fff;color:#312e81;border-radius:999px;min-width:20px;height:20px;display:inline-flex;align-items:center;justify-content:center;font-size:11.5px;font-weight:700;padding:0 6px">{{ quoteCount }}</span>
+      </a>
+    </div>
+  </div>
+  <nav class="desktop-nav" style="border-top:1px solid #ECEAF4;position:relative">
+    <div class="nav-row">
+      <sc-for list="{{ nav }}" as="n" hint-placeholder-count="7">
+        <div class="nav-item" data-mega>
+          <button type="button" class="nav-link {{ n.accent }}" aria-expanded="false">
+            {{ n.name }}
+            <sc-if value="{{ n.isNew }}" hint-placeholder-val="{{ false }}"><span style="background:linear-gradient(135deg,#312e81,#8b5cf6);color:#fff;font-size:10px;font-weight:700;padding:2px 7px;border-radius:999px;letter-spacing:0.04em">NEW</span></sc-if>
+          </button>
+          <div class="mega">
+            <div class="mega__inner">
+              <div style="display:flex;flex-direction:column">
+                <h3 class="mega__title">{{ n.name }}</h3>
+                <div class="mega__subs">
+                  <sc-for list="{{ n.subs }}" as="sub" hint-placeholder-count="5">
+                    <a href="./collection.html" class="mega__sub">{{ sub }}</a>
+                  </sc-for>
+                </div>
+                <a href="./collection.html" class="mega__all">See all</a>
+              </div>
+              <div class="mega__cards">
+                <sc-for list="{{ n.cards }}" as="cd" hint-placeholder-count="4">
+                  <a href="./collection.html" class="mega__card">
+                    <span class="mega__thumb">
+                      <sc-if value="{{ cd.src }}" hint-placeholder-val="{{ true }}"><img src="{{ cd.src }}" alt="{{ cd.name }}"></sc-if>
+                      <sc-if value="{{ cd.noImg }}" hint-placeholder-val="{{ false }}"><span class="mega__ph"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="8.5" cy="9.5" r="1.5"/><path d="m21 15-5-5L5 20"/></svg></span></sc-if>
+                    </span>
+                    <span>
+                      <span class="mega__cardname">{{ cd.name }}</span><br>
+                      <span class="mega__cardsub">{{ cd.sub }}</span>
+                    </span>
+                  </a>
+                </sc-for>
               </div>
             </div>
           </div>
+        </div>
+      </sc-for>
+    </div>
+  </nav>
+  <div class="mobile-drawer" aria-hidden="true">
+    <label class="mobile-search">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#6B6880" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"></circle><path d="m20 20-3.5-3.5"></path></svg>
+      <input type="search" placeholder="Search the catalogue" aria-label="Search the catalogue">
+    </label>
+    <nav class="mobile-nav" aria-label="Mobile navigation">
+      <sc-for list="{{ nav }}" as="n" hint-placeholder-count="7"><a href="./collection.html">{{ n.name }}<span aria-hidden="true">›</span></a></sc-for>
+    </nav>
+    <button onClick="{{ toggleRegion }}" class="mobile-region"><span>{{ regionFlag }}</span>{{ regionLabel }}<span aria-hidden="true">▾</span></button>
+  </div>
+</header>
 
-          <div class="art" aria-hidden="true">
-            <div class="art__halo art__halo--outer"></div>
-            <div class="art__halo art__halo--inner"></div>
-            <span class="art__spark art__spark--one">✦</span>
-            <span class="art__spark art__spark--two">✦</span>
-            <span class="art__spark art__spark--three">✦</span>
-            <div class="gift">
-              <div class="gift__lid"></div>
-              <div class="gift__box"></div>
-              <div class="gift__ribbon gift__ribbon--vertical"></div>
-              <div class="gift__ribbon gift__ribbon--horizontal"></div>
-              <div class="gift__bow gift__bow--left"></div>
-              <div class="gift__bow gift__bow--right"></div>
-              <div class="gift__knot"></div>
-            </div>
-            <span class="art__caption">The best things are worth waiting for.</span>
-          </div>
-        </section>
-
-        <footer class="footer">
-          <span>© MARSA HORIZON TRADING LLC, Dubai, UAE</span>
-          <span>Thoughtfully made. Soon to be shared.</span>
-        </footer>
+<section class="hero-section" style="position:relative;overflow:hidden;background:radial-gradient(900px 500px at 85% 20%,rgba(139,92,246,0.14),transparent 60%),radial-gradient(700px 400px at 5% 90%,rgba(49,46,129,0.10),transparent 60%),#fff">
+  <div class="hero-inner" style="max-width:1240px;margin:0 auto;padding:72px 28px 80px;display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:48px;align-items:center">
+    <div class="hero-copy">
+      <div style="display:inline-flex;align-items:center;gap:8px;background:#F4F3FA;border:1px solid #E6E3F1;border-radius:999px;padding:6px 14px 6px 6px;font-size:12.5px;font-weight:600;color:#312e81;margin-bottom:24px;white-space:nowrap">
+        <span style="background:linear-gradient(135deg,#312e81,#8b5cf6);color:#fff;border-radius:999px;padding:3px 9px;font-size:11px">{{ regionCopy }}</span>Corporate gifting across the UAE and Saudi Arabia
       </div>
-    </main>
-  </body>
+      <h1 style="font-weight:800;font-size:clamp(40px,5.2vw,68px);line-height:1.02;letter-spacing:-0.03em;margin:0 0 22px;text-wrap:balance">Corporate gifting for the Gulf, <span style="background:linear-gradient(90deg,#312e81,#8b5cf6 60%,#b794ff);-webkit-background-clip:text;background-clip:text;color:transparent">done properly</span></h1>
+      <p style="font-size:18px;color:#5B5A75;max-width:520px;margin:0 0 32px;line-height:1.6;text-wrap:pretty">274 products across seven categories, ready for your logo. Build a quote in a couple of minutes and a real person comes back with pricing, not an automated checkout.</p>
+      <div class="hero-ctas" style="display:flex;gap:12px;flex-wrap:wrap;margin-bottom:32px">
+        <a href="#categories" style="background:linear-gradient(135deg,#312e81,#8b5cf6);color:#fff;border-radius:999px;padding:16px 30px;font-size:15px;font-weight:700;white-space:nowrap" style-hover="color:#fff;filter:brightness(1.08)">Browse the catalogue</a>
+        <a href="#" style="background:#fff;color:#0F1029;border:1.5px solid #E6E3F1;border-radius:999px;padding:16px 30px;font-size:15px;font-weight:700;white-space:nowrap" style-hover="border-color:#8b5cf6;color:#312e81">Talk to our team</a>
+      </div>
+      <div class="hero-usps">
+        <span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#8b5cf6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l3 2"></path></svg>1-day quotes</span>
+        <span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#8b5cf6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7h11v9H3zM14 10h4l3 3v3h-7z"></path><circle cx="7" cy="18" r="2"></circle><circle cx="17" cy="18" r="2"></circle></svg>UAE &amp; KSA delivery</span>
+        <span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#8b5cf6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a8 8 0 0 1-11.6 7.2L4 21l1.8-4.4A8 8 0 1 1 21 12z"></path></svg>EN &amp; AR support</span>
+      </div>
+    </div>
+    <div class="hero-art" style="position:relative;min-height:440px;display:flex;align-items:center;justify-content:center">
+      <img src="./assets/marsa-hero.png" alt="Branded corporate gifts from Marsa Gifting" style="width:100%;max-width:560px;height:auto;display:block;border-radius:28px">
+    </div>
+  </div>
+</section>
+
+<section id="categories" style="max-width:1240px;margin:0 auto;padding:88px 28px 40px">
+  <div style="display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap;margin:0 0 40px">
+    <div style="max-width:720px">
+      <h2 style="font-weight:800;font-size:clamp(32px,4vw,48px);line-height:1.06;margin:0 0 12px;letter-spacing:-0.03em">Start with the category</h2>
+      <p style="color:#5B5A75;margin:0;font-size:16px;max-width:600px">Seven categories, 40 subcategories, 274 products. Filter down to the shortlist, then send it to us as a quote.</p>
+    </div>
+    <button type="button" onClick="{{ togglePalette }}" aria-pressed="{{ paletteOn }}" title="Preview an alternative card palette" style="display:inline-flex;align-items:center;gap:10px;background:#fff;border:1.5px solid #E6E3F1;border-radius:999px;padding:10px 12px 10px 16px;font-family:inherit;font-size:13px;font-weight:700;color:#312e81;cursor:pointer;white-space:nowrap">
+  <span>Palette: {{ paletteLabel }}</span>
+  <span aria-hidden="true" style="position:relative;width:38px;height:22px;border-radius:999px;background:{{ paletteTrack }};transition:background .2s ease;flex:none"><span style="position:absolute;top:3px;left:3px;width:16px;height:16px;border-radius:999px;background:#312e81;transition:transform .2s ease;transform:{{ paletteKnob }}"></span></span>
+</button>
+  </div>
+
+  <div class="collection-grid">
+    <sc-for list="{{ categories }}" as="c" hint-placeholder-count="7">
+      <a href="./collection.html" class="collection-card {{ c.size }}" style="--card-bg:{{ c.bg }};--card-accent:{{ c.accent }}">
+        <div class="collection-card__art"><img src="{{ c.src }}" alt="{{ c.name }}"></div>
+        <div class="collection-card__copy">
+          <h3 class="collection-card__title">{{ c.name }}</h3>
+          <span class="collection-card__arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7"></path><path d="M8 7h9v9"></path></svg></span>
+        </div>
+      </a>
+    </sc-for>
+  </div>
+</section>
+
+
+<section style="background:#fff">
+  <div style="max-width:1240px;margin:0 auto;padding:88px 28px">
+    <div style="display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap;margin-bottom:36px">
+      <div>
+        <div style="font-size:12px;letter-spacing:0.16em;text-transform:uppercase;font-weight:700;margin-bottom:12px;color:#8b5cf6;display:inline-block">Bestsellers</div>
+        <h2 style="font-weight:800;font-size:clamp(30px,3.6vw,44px);line-height:1.08;margin:0;letter-spacing:-0.025em">Most requested this month</h2>
+      </div>
+      <div style="display:flex;align-items:center;gap:10px">
+        <button type="button" class="pslider-prev" aria-label="Previous products" style="width:46px;height:46px;border-radius:50%;border:1.5px solid #E6E3F1;background:#fff;color:#312e81;cursor:pointer;display:flex;align-items:center;justify-content:center" style-hover="border-color:#8b5cf6"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg></button>
+        <button type="button" class="pslider-next" aria-label="Next products" style="width:46px;height:46px;border-radius:50%;border:1.5px solid #E6E3F1;background:#fff;color:#312e81;cursor:pointer;display:flex;align-items:center;justify-content:center" style-hover="border-color:#8b5cf6"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg></button>
+      </div>
+    </div>
+    <div class="pslider"><div class="pslider__viewport"><div class="pslider__track">
+      <sc-for list="{{ products }}" as="p" hint-placeholder-count="8">
+        <div class="pcard">
+          <a href="./product.html" class="pcard__media">
+            <sc-if value="{{ p.tag }}" hint-placeholder-val="{{ false }}"><span class="pcard__badge">{{ p.tag }}</span></sc-if>
+            <image-slot id="{{ p.slot }}" shape="rect" fit="contain" src="{{ p.src }}" placeholder="{{ p.name }}"></image-slot>
+            <button onClick="{{ addToQuote }}" class="pcard__quick">Quick Add</button>
+          </a>
+          <a href="./product.html" class="pcard__title">{{ p.name }}</a>
+          <div class="pcard__price">{{ p.price }}</div>
+          <div class="pcard__swatches" aria-label="Available colours">
+            <sc-for list="{{ p.colors }}" as="color" hint-placeholder-count="3"><span class="pcard__swatch" style="--swatch:{{ color }}"></span></sc-for>
+          </div>
+        </div>
+      </sc-for>
+    </div></div></div>
+  </div>
+</section>
+
+<section style="max-width:1240px;margin:0 auto;padding:96px 28px">
+  <div style="text-align:center;max-width:620px;margin:0 auto 52px">
+    <div style="font-size:12px;letter-spacing:0.16em;text-transform:uppercase;font-weight:700;margin-bottom:12px;color:#8b5cf6;display:inline-block">How it works</div>
+    <h2 style="font-weight:800;font-size:clamp(30px,3.6vw,44px);line-height:1.08;margin:0 0 12px;letter-spacing:-0.025em">From catalogue to quote in three steps</h2>
+    <p style="color:#5B5A75;margin:0;font-size:16px">No account to create and nothing to pay online. You tell us what you need, we come back with pricing.</p>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px">
+    <div style="position:relative;padding:32px 28px;border-radius:20px;border:1px solid #ECEAF4;background:#fff">
+      <div style="font-size:56px;font-weight:800;line-height:1;letter-spacing:-0.04em;margin-bottom:18px;background:linear-gradient(135deg,#312e81,#8b5cf6);-webkit-background-clip:text;background-clip:text;color:transparent">01</div>
+      <div style="font-weight:700;font-size:18px;margin-bottom:8px">Browse &amp; pick</div>
+      <div style="color:#5B5A75;font-size:14.5px">274 products across seven categories and 40 subcategories, in English or Arabic.</div>
+    </div>
+    <div style="position:relative;padding:32px 28px;border-radius:20px;border:1px solid #ECEAF4;background:#fff">
+      <div style="font-size:56px;font-weight:800;line-height:1;letter-spacing:-0.04em;margin-bottom:18px;background:linear-gradient(135deg,#312e81,#8b5cf6);-webkit-background-clip:text;background-clip:text;color:transparent">02</div>
+      <div style="font-weight:700;font-size:18px;margin-bottom:8px">Build your quote</div>
+      <div style="color:#5B5A75;font-size:14.5px">Add what you like, set the quantities and leave your contact details. It takes about two minutes.</div>
+    </div>
+    <div style="position:relative;padding:32px 28px;border-radius:20px;border:1px solid #ECEAF4;background:#fff">
+      <div style="font-size:56px;font-weight:800;line-height:1;letter-spacing:-0.04em;margin-bottom:18px;background:linear-gradient(135deg,#312e81,#8b5cf6);-webkit-background-clip:text;background-clip:text;color:transparent">03</div>
+      <div style="font-weight:700;font-size:18px;margin-bottom:8px">We come back to you</div>
+      <div style="color:#5B5A75;font-size:14.5px">Your request reaches our sales team directly, and you get pricing and next steps within one working day.</div>
+    </div>
+  </div>
+</section>
+
+<section style="max-width:1240px;margin:0 auto;padding:0 28px 96px">
+  <div style="position:relative;overflow:hidden;background:linear-gradient(120deg,#1e1b5e 0%,#312e81 40%,#8b5cf6 100%);border-radius:28px;display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));min-height:400px">
+    <div style="position:absolute;right:-80px;top:-80px;width:360px;height:360px;border-radius:50%;background:rgba(255,255,255,0.08)"></div>
+    <div style="padding:64px 56px;color:#fff;display:flex;flex-direction:column;justify-content:center;position:relative">
+      <div style="display:inline-flex;align-self:flex-start;background:rgba(255,255,255,0.14);border:1px solid rgba(255,255,255,0.25);border-radius:999px;padding:6px 14px;font-size:12px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:18px;white-space:nowrap">Seasonal collection</div>
+      <h2 style="font-weight:800;font-size:clamp(30px,3.4vw,44px);line-height:1.06;margin:0 0 16px;letter-spacing:-0.025em;text-wrap:balance">National Day, Ramadan &amp; year-end gifts, sorted early</h2>
+      <p style="color:rgba(255,255,255,0.8);margin:0 0 28px;max-width:440px;font-size:16px;text-wrap:pretty">25 seasonal products for National Day, Eid, Diwali and Christmas. Stock moves early in the Gulf, so it pays to ask ahead.</p>
+      <a href="./collection.html" style="align-self:flex-start;background:#fff;color:#312e81;border-radius:999px;padding:14px 26px;font-size:14.5px;font-weight:700;white-space:nowrap" style-hover="background:#F4F3FA;color:#312e81">See seasonal gifts</a>
+    </div>
+    <div class="seasonal-media" style="position:relative;min-height:320px;margin:24px"><div style="position:absolute;inset:0;border-radius:20px;overflow:hidden;box-shadow:0 24px 60px rgba(15,16,41,0.3);background:#fff"><image-slot id="v2-seasonal" shape="rect" fit="cover" src="./assets/marsa-gifting.png" placeholder="Marsa Gifting branded gift box"></image-slot></div></div>
+  </div>
+</section>
+
+<section style="background:#FAFAFD;border-top:1px solid #ECEAF4;border-bottom:1px solid #ECEAF4">
+  <div style="max-width:1240px;margin:0 auto;padding:88px 28px">
+    <div style="display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap;margin-bottom:32px">
+      <div>
+        <div style="font-size:12px;letter-spacing:0.16em;text-transform:uppercase;font-weight:700;margin-bottom:12px;color:#8b5cf6;display:inline-block">Reviews</div>
+        <h2 style="font-weight:800;font-size:clamp(30px,3.6vw,44px);line-height:1.08;margin:0;letter-spacing:-0.025em">What clients say</h2>
+      </div>
+      <div style="display:flex;gap:10px">
+        <button type="button" class="rev-prev" aria-label="Previous reviews" style="width:46px;height:46px;border-radius:50%;border:1.5px solid #E6E3F1;background:#fff;color:#312e81;cursor:pointer;display:flex;align-items:center;justify-content:center" style-hover="border-color:#8b5cf6"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg></button>
+        <button type="button" class="rev-next" aria-label="Next reviews" style="width:46px;height:46px;border-radius:50%;border:1.5px solid #E6E3F1;background:#fff;color:#312e81;cursor:pointer;display:flex;align-items:center;justify-content:center" style-hover="border-color:#8b5cf6"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg></button>
+      </div>
+    </div>
+
+    <div class="rev-viewport">
+      <div class="rev-track">
+        <sc-for list="{{ reviews }}" as="r" hint-placeholder-count="6">
+          <article class="rev-card">
+            <div class="rev-stars" aria-label="5 out of 5 stars">
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="#8b5cf6"><path d="m12 2 3 6.6 7 .9-5.2 4.9 1.4 7.1L12 18l-6.2 3.5 1.4-7.1L2 9.5l7-.9z"/></svg><svg width="17" height="17" viewBox="0 0 24 24" fill="#8b5cf6"><path d="m12 2 3 6.6 7 .9-5.2 4.9 1.4 7.1L12 18l-6.2 3.5 1.4-7.1L2 9.5l7-.9z"/></svg><svg width="17" height="17" viewBox="0 0 24 24" fill="#8b5cf6"><path d="m12 2 3 6.6 7 .9-5.2 4.9 1.4 7.1L12 18l-6.2 3.5 1.4-7.1L2 9.5l7-.9z"/></svg><svg width="17" height="17" viewBox="0 0 24 24" fill="#8b5cf6"><path d="m12 2 3 6.6 7 .9-5.2 4.9 1.4 7.1L12 18l-6.2 3.5 1.4-7.1L2 9.5l7-.9z"/></svg><svg width="17" height="17" viewBox="0 0 24 24" fill="#8b5cf6"><path d="m12 2 3 6.6 7 .9-5.2 4.9 1.4 7.1L12 18l-6.2 3.5 1.4-7.1L2 9.5l7-.9z"/></svg>
+            </div>
+            <p class="rev-quote">{{ r.quote }}</p>
+            <div class="rev-person">
+              <span class="rev-avatar">{{ r.initials }}</span>
+              <span><span class="rev-name">{{ r.name }}</span><span class="rev-role">{{ r.role }}</span></span>
+            </div>
+          </article>
+        </sc-for>
+      </div>
+    </div>
+
+    <p style="margin:22px 0 0;font-size:12.5px;color:#9A97AE;display:flex;align-items:flex-start;gap:8px;max-width:760px">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex:none;margin-top:2px"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg>
+      Note: in the live store this section will be powered by a Shopify reviews app, so the final layout and card styling may differ from this design.
+    </p>
+  </div>
+</section>
+
+<section style="max-width:1240px;margin:0 auto;padding:96px 28px 0">
+  <div class="faq-layout">
+    <div class="faq-col">
+      <div class="faq-media">
+        <img src="./assets/marsa-faq.png" alt="A client opening a Marsa Gifting branded gift box" style="width:100%;height:100%;object-fit:cover;display:block">
+      </div>
+    </div>
+    <div class="faq-col faq-list">
+      <div style="margin:0 0 28px">
+        <div style="font-size:12px;letter-spacing:0.16em;text-transform:uppercase;font-weight:700;margin-bottom:12px;color:#8b5cf6;display:inline-block">FAQ</div>
+        <h2 style="font-weight:800;font-size:clamp(28px,3.2vw,40px);line-height:1.08;margin:0 0 12px;letter-spacing:-0.025em">The questions we are asked most</h2>
+        <p style="color:#5B5A75;margin:0;font-size:15.5px">If yours is not here, message us on WhatsApp or use live chat between 8am and 8pm, in English or Arabic.</p>
+      </div>
+      <div class="faq-items">
+      <sc-for list="{{ faqs }}" as="q" hint-placeholder-count="5">
+        <details class="faq-item">
+          <summary class="faq-q">
+            {{ q.q }}
+            <span class="faq-icon" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14"/><path d="M5 12h14"/></svg></span>
+          </summary>
+          <div class="faq-panel"><div><div class="faq-a">{{ q.a }}</div></div></div>
+        </details>
+      </sc-for>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section style="max-width:1240px;margin:0 auto;padding:96px 28px">
+  <div style="position:relative;overflow:hidden;text-align:center;border-radius:28px;padding:72px 32px;background:radial-gradient(600px 300px at 50% 0%,rgba(139,92,246,0.18),transparent 70%),#F4F3FA;border:1px solid #E6E3F1">
+    <h2 style="font-weight:800;font-size:clamp(32px,4vw,52px);line-height:1.05;margin:0 auto 16px;max-width:680px;letter-spacing:-0.03em;text-wrap:balance">Ready to put your logo on something <span style="background:linear-gradient(90deg,#312e81,#8b5cf6);-webkit-background-clip:text;background-clip:text;color:transparent">worth keeping?</span></h2>
+    <p style="color:#5B5A75;font-size:17px;max-width:480px;margin:0 auto 32px;text-wrap:pretty">Send us your list or start from the catalogue. We come back with products, pricing and a timeline within one working day.</p>
+    <div class="hero-ctas" style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
+      <a href="#" style="background:linear-gradient(135deg,#312e81,#8b5cf6);color:#fff;border-radius:999px;padding:16px 30px;font-size:15px;font-weight:700;white-space:nowrap" style-hover="color:#fff;filter:brightness(1.08)">Request a quote</a>
+      <a href="#" style="display:inline-flex;align-items:center;gap:8px;background:#fff;color:#0F1029;border:1.5px solid #E6E3F1;border-radius:999px;padding:16px 26px;font-size:15px;font-weight:700;white-space:nowrap" style-hover="border-color:#25D366;color:#0F1029"><span style="width:8px;height:8px;border-radius:50%;background:#25D366;display:inline-block"></span>Chat on WhatsApp</a>
+    </div>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="site-footer__glow" aria-hidden="true"></div>
+  <div class="site-footer__inner">
+    <div class="foot-top">
+      <div class="foot-brand">
+        <img src="./assets/logo-white-v2.svg" alt="Marsa Gifting" style="height:40px;width:auto;display:block;margin-bottom:20px">
+        <p class="foot-tagline">Corporate gifting for teams and clients across the UAE and Saudi Arabia, in English and Arabic.</p>
+        <div class="foot-social">
+          <a href="#" aria-label="LinkedIn"><svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9h4v12H3zM10 9h3.8v1.7h.05a4.2 4.2 0 0 1 3.75-2c4 0 4.75 2.6 4.75 6V21h-4v-5.3c0-1.3 0-2.9-1.8-2.9s-2.05 1.4-2.05 2.8V21h-4z"/></svg></a>
+          <a href="#" aria-label="Instagram"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="3.6"/><circle cx="17.2" cy="6.8" r="1.2" fill="currentColor" stroke="none"/></svg></a>
+          <a href="#" aria-label="WhatsApp"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a8 8 0 0 1-11.6 7.2L4 21l1.8-4.4A8 8 0 1 1 21 12z"/></svg></a>
+          <a href="#" aria-label="Email"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg></a>
+        </div>
+      </div>
+
+      <nav class="foot-col">
+        <div class="foot-head">Catalog</div>
+        <a href="./collection.html">Apparel</a><a href="./collection.html">Drinkware</a><a href="./collection.html">Bags &amp; Luggage</a><a href="./collection.html">Trade Shows &amp; Events</a><a href="./collection.html">Office</a><a href="./collection.html">Tech</a><a href="./collection.html">Seasonal &amp; Festivals</a>
+      </nav>
+
+      <nav class="foot-col">
+        <div class="foot-head">Company</div>
+        <a href="#">About us</a><a href="#">Contact</a><a href="#">Request a quote</a>
+      </nav>
+
+      <div class="foot-col foot-contact">
+        <div class="foot-head">Talk to us</div>
+        <a href="#" class="foot-contactrow">
+          <span class="foot-ico"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a8 8 0 0 1-11.6 7.2L4 21l1.8-4.4A8 8 0 1 1 21 12z"/></svg></span>
+          <span><span class="foot-clabel">WhatsApp</span><span class="foot-csub">24/7, we reply fast</span></span>
+        </a>
+        <a href="#" class="foot-contactrow">
+          <span class="foot-ico"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span>
+          <span><span class="foot-clabel">Live chat</span><span class="foot-csub">8am to 8pm, English &amp; Arabic</span></span>
+        </a>
+        <a href="#" class="foot-contactrow">
+          <span class="foot-ico"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg></span>
+          <span><span class="foot-clabel">hello@marsagifting.com</span><span class="foot-csub">Quotes within one working day</span></span>
+        </a>
+      </div>
+    </div>
+
+    <div class="foot-bar">
+      <span>© 2026 Marsa Gifting</span>
+      <span class="foot-regions">
+        <span class="foot-chip">🇦🇪 United Arab Emirates</span>
+        <span class="foot-chip">🇸🇦 Saudi Arabia</span>
+      </span>
+      <span class="foot-legal"><a href="#">Privacy Policy</a><a href="#">Terms</a></span>
+    </div>
+  </div>
+</footer>
+
+<a href="#" title="Chat with us" style="position:fixed;right:24px;bottom:24px;width:58px;height:58px;border-radius:50%;background:linear-gradient(135deg,#312e81,#8b5cf6);color:#fff;display:flex;align-items:center;justify-content:center;z-index:20" style-hover="color:#fff;filter:brightness(1.1)">
+  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a8 8 0 0 1-11.6 7.2L4 21l1.8-4.4A8 8 0 1 1 21 12z"></path></svg>
+</a>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;region&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;UAE&quot;,&quot;KSA&quot;],&quot;default&quot;:&quot;UAE&quot;,&quot;tsType&quot;:&quot;'UAE' | 'KSA'&quot;,&quot;section&quot;:&quot;Header&quot;},&quot;quoteCount&quot;:{&quot;editor&quot;:&quot;int&quot;,&quot;default&quot;:0,&quot;min&quot;:0,&quot;max&quot;:99,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Header&quot;},&quot;showAnnouncement&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Header&quot;}}">
+class Component extends DCLogic {
+  state = { region: null, added: 0, altPalette: false };
+  renderVals() {
+    const region = this.state.region ?? this.props.region ?? 'UAE';
+    const withNoImg = n => n.map(c => ({ ...c, cards: c.cards.map(d => ({ ...d, noImg: !d.src })) }));
+    const ksa = region === 'KSA';
+    // Demo-only palette preview. The colours live here rather than in a DOM
+    // script because every re-render rewrites the cards' inline style.
+    const alt = this.state.altPalette;
+    const BRAND = { bg: '#F1F0EE', accent: '#312e81' };
+    const MULTI = [
+      { bg: '#FFF0A8', accent: '#9B6A00' },
+      { bg: '#E9E3FF', accent: '#6651A8' },
+      { bg: '#D9F7F5', accent: '#147D78' },
+      { bg: '#E2E8FF', accent: '#4056A8' },
+      { bg: '#FFF0D1', accent: '#A66B12' },
+      { bg: '#E8F5DA', accent: '#557C2E' },
+      { bg: '#FFE1E8', accent: '#A83B59' },
+    ];
+    const paletteAt = i => (alt ? MULTI[i % MULTI.length] : BRAND);
+    return {
+      togglePalette: () => this.setState(s => ({ altPalette: !s.altPalette })),
+      paletteOn: alt ? 'true' : 'false',
+      paletteLabel: alt ? 'Multicolour' : 'Brand',
+      paletteTrack: alt ? '#312e81' : '#ECEAF4',
+      paletteKnob: alt ? 'translateX(16px)' : 'translateX(0)',
+      showAnnouncement: this.props.showAnnouncement ?? true,
+      regionLabel: ksa ? 'KSA العربية' : 'UAE English',
+      regionFlag: ksa ? '🇸🇦' : '🇦🇪',
+      regionCopy: ksa ? 'Saudi Arabia' : 'UAE',
+      quoteCount: (this.props.quoteCount ?? 0) + this.state.added,
+      toggleRegion: () => this.setState({ region: ksa ? 'UAE' : 'KSA' }),
+      addToQuote: () => this.setState(s => ({ added: s.added + 1 })),
+      nav: withNoImg([
+        { name: 'Apparel', accent: '', isNew: false,
+          subs: ['T-Shirts','Hoodies','Sportswear','Uniform & Workwear','Caps'],
+          cards: [
+            { name: 'Hoodies', sub: '4 - 6 styles', src: './assets/midocean/s04884.jpg' },
+            { name: 'T-Shirts', sub: '6 - 8 styles', src: './assets/midocean/s04884.jpg' },
+            { name: 'Sportswear', sub: '4 - 6 styles', src: './assets/midocean/s04884.jpg' },
+            { name: 'Caps', sub: '4 - 5 styles', src: './assets/midocean/s04884.jpg' },
+          ] },
+        { name: 'Drinkware', accent: '', isNew: false,
+          subs: ['Custom Bottles','Thermal Flasks','Mugs','Tumblers'],
+          cards: [
+            { name: 'Custom Bottles', sub: '5 - 6 styles', src: './assets/midocean/mo2107.jpg' },
+            { name: 'Thermal Flasks', sub: '5 - 6 styles', src: './assets/midocean/mo8314.jpg' },
+            { name: 'Mugs', sub: '5 - 6 styles', src: './assets/midocean/mo8040.jpg' },
+            { name: 'Tumblers', sub: '4 - 5 styles', src: './assets/midocean/mo2327.jpg' },
+          ] },
+        { name: 'Bags & Luggage', accent: '', isNew: false,
+          subs: ['Backpacks','Tote Bags','Drawstring Bags','Travel Bags','Laptop Bags'],
+          cards: [
+            { name: 'Backpacks', sub: '5 - 6 styles', src: './assets/midocean/mo8399.jpg' },
+            { name: 'Laptop Bags', sub: '4 - 5 styles', src: './assets/midocean/mo8399.jpg' },
+            { name: 'Travel Bags', sub: '4 - 5 styles', src: './assets/midocean/mo8399.jpg' },
+            { name: 'Tote Bags', sub: '4 - 5 styles', src: './assets/midocean/mo8399.jpg' },
+          ] },
+        { name: 'Trade Shows & Events', accent: '', isNew: false,
+          subs: ['Customized Gifts','Promotional Novelties','Boxes & Custom Packaging','Lanyards & Wristbands'],
+          cards: [
+            { name: 'Lanyards & Wristbands', sub: '4 - 5 styles', src: './assets/midocean/mo6925.jpg' },
+            { name: 'Customized Gifts', sub: '4 - 5 sets', src: './assets/midocean/cx1603.jpg' },
+            { name: 'Boxes & Packaging', sub: '4 - 5 items', src: './assets/midocean/cx1603.jpg' },
+            { name: 'Promotional Novelties', sub: '5 - 6 items', src: './assets/midocean/mo9796.jpg' },
+          ] },
+        { name: 'Office', accent: '', isNew: false,
+          subs: ['Promotional Pens','Notebooks & Diaries','Mousepads & Desk Items','Trophies & Awards','Card Holder Wallets','Awards and Plaques'],
+          cards: [
+            { name: 'Notebooks & Diaries', sub: '5 - 6 styles', src: './assets/midocean/mo2645.jpg' },
+            { name: 'Desk Items', sub: '4 - 5 styles', src: './assets/midocean/mo2431.jpg' },
+            { name: 'Promotional Pens', sub: '5 - 6 styles', src: './assets/midocean/mo2645.jpg' },
+            { name: 'Trophies & Awards', sub: '4 - 5 styles', src: './assets/midocean/mo2431.jpg' },
+          ] },
+        { name: 'Tech', accent: '', isNew: false,
+          subs: ['Power Banks','Wireless Chargers','Audio (Speakers, Earbuds, Headphones)','Smart Watches & Wearables','Phone & Laptop Stands','USB Devices','Mobile Accessories','Find My Trackers'],
+          cards: [
+            { name: 'Wireless Chargers', sub: '4 - 5 styles', src: './assets/midocean/mo2431.jpg' },
+            { name: 'Audio', sub: '5 - 6 styles', src: './assets/midocean/mo9155.jpg' },
+            { name: 'Find My Trackers', sub: '2 - 3 styles', src: './assets/midocean/mo9796.jpg' },
+            { name: 'Power Banks', sub: '4 - 5 styles', src: './assets/midocean/mo2431.jpg' },
+          ] },
+        { name: 'Seasonal & Festivals', accent: 'nav-link--accent', isNew: true,
+          subs: ['National Day','Eid','Diwali','Christmas','Seasonal'],
+          cards: [
+            { name: 'Christmas', sub: '4 - 5 styles', src: './assets/midocean/cx1603.jpg' },
+            { name: 'National Day', sub: '4 - 5 styles', src: './assets/midocean/mo9910.jpg' },
+            { name: 'Eid', sub: '4 - 5 styles', src: './assets/midocean/mo9910.jpg' },
+            { name: 'Diwali', sub: '4 - 5 styles', src: './assets/midocean/cx1603.jpg' },
+          ] },
+      ]),
+      categories: [
+        { name: 'Seasonal & Festival Gifts', count: '25 products', detail: 'National Day, Eid, Diwali, Christmas and seasonal gifting', size: 'collection-card--tall', slot: 'v2-cat-seasonal', placeholder: 'Gift box', src: './assets/midocean/cx1603.jpg' },
+        { name: 'Apparel', count: '38 products', detail: 'T-shirts, hoodies, sportswear and workwear', size: '', slot: 'v2-cat-apparel', placeholder: 'Hoodie', src: './assets/midocean/s04884.jpg' },
+        { name: 'Drinkware', count: '34 products', detail: 'Bottles, flasks, mugs and tumblers', size: '', slot: 'v2-cat-drinkware', placeholder: 'Bottle', src: './assets/midocean/mo2107.jpg' },
+        { name: 'Tech', count: '60 products', detail: 'Power banks, chargers, audio and wearables', size: '', slot: 'v2-cat-tech', placeholder: 'Wireless charger', src: './assets/midocean/mo2431.jpg' },
+        { name: 'Bags & Luggage', count: '40 products', detail: 'Backpacks, totes, laptop and travel bags', size: '', slot: 'v2-cat-bags', placeholder: 'Laptop backpack', src: './assets/midocean/mo8399.jpg' },
+        { name: 'Office', count: '45 products', detail: 'Pens, notebooks, desk gear and awards', size: '', slot: 'v2-cat-office', placeholder: 'A5 notebook', src: './assets/midocean/mo2645.jpg' },
+        { name: 'Trade Shows & Events', count: '32 products', detail: 'Giveaways, packaging, lanyards and wristbands', size: '', slot: 'v2-cat-events', placeholder: 'RPET lanyard', src: './assets/midocean/mo6925.jpg' },
+      ].map((c, i) => ({ ...c, ...paletteAt(i) })),
+      reviews: [
+        { quote: 'We ordered 400 bottles for our regional sales kickoff and the engraving came out sharper than the proof suggested. Two days faster than the date we were given.', name: 'Client name', role: 'Head of People, Dubai', initials: 'CN' },
+        { quote: 'The quote landed the same afternoon with three options at different budgets. That alone saved us a week of back and forth with other suppliers.', name: 'Client name', role: 'Marketing Manager, Riyadh', initials: 'CN' },
+        { quote: 'Onboarding kits for 120 new joiners, packed individually and delivered to two offices. Nothing arrived damaged and the boxes looked genuinely premium.', name: 'Client name', role: 'Operations Lead, Abu Dhabi', initials: 'CN' },
+        { quote: 'They flagged that our logo would not engrave cleanly at that size and sent a corrected proof before we asked. Small thing, but it is why we reordered.', name: 'Client name', role: 'Brand Manager, Jeddah', initials: 'CN' },
+        { quote: 'National Day gifts for clients, sorted six weeks early because they warned us about stock. The Arabic support made the approval process much easier internally.', name: 'Client name', role: 'Account Director, Dubai', initials: 'CN' },
+        { quote: 'Reordered three times this year. Same contact each time, same quality, and pricing that did not creep up between orders.', name: 'Client name', role: 'Founder, Sharjah', initials: 'CN' },
+      ],
+      faqs: [
+        { q: 'What is the minimum order quantity?', a: 'It varies by product, and every product page lists its own minimum so you never have to guess. If you are close to a minimum, ask us anyway and we will tell you what is workable.' },
+        { q: 'How long does production take?', a: 'Typically 7 to 14 working days once your artwork is approved, depending on the product and the branding method. Seasonal orders close to National Day or Ramadan run longer, so earlier is always safer.' },
+        { q: 'Can I see my logo on the product before committing?', a: 'Yes. We send a digital proof with every quote at no cost, and nothing goes into production until you approve it. Physical samples can be arranged on request for larger orders.' },
+        { q: 'Which branding methods do you offer?', a: 'Screen printing, UV print, laser engraving, embossing and embroidery. Our team recommends the right method for your artwork and the product material as part of the quote, at no extra cost.' },
+        { q: 'Do you deliver outside the UAE and Saudi Arabia?', a: 'Our standard delivery covers both countries door to door, including Dubai, Abu Dhabi, Riyadh and Jeddah. For other GCC destinations, ask us and we will quote the shipping separately.' },
+      ],
+      products: [
+        { name: 'Double Wall Bottle 500ml', category: 'Drinkware', code: 'MO2107', moq: '25 minimum', lead: '10 days', price: 'From AED 34', colors: ['#17171A','#E8E8E5','#234A78','#A9C6C4'], slot: 'v2-p-1', src: './assets/midocean/mo2107.jpg', tag: 'Bestseller' },
+        { name: 'Eliott Full-Zip Hoodie', category: 'Apparel', code: 'S04884', moq: '30 minimum', lead: '14 days', price: 'From AED 96', colors: ['#17171A','#65666A','#213754','#C8C5BE'], slot: 'v2-p-2', src: './assets/midocean/s04884.jpg', tag: '' },
+        { name: 'Wireless Charger 15W', category: 'Tech', code: 'MO2431', moq: '50 minimum', lead: '12 days', price: 'From AED 58', colors: ['#17171A','#F0F0EC','#B3A07A'], slot: 'v2-p-3', src: './assets/midocean/mo2431.jpg', tag: 'New' },
+        { name: 'Laptop Backpack', category: 'Bags & Luggage', code: 'MO8399', moq: '25 minimum', lead: '14 days', price: 'From AED 112', colors: ['#17171A','#48515A','#263957'], slot: 'v2-p-4', src: './assets/midocean/mo8399.jpg', tag: '' },
+        { name: 'A5 PU Notebook', category: 'Office', code: 'MO2645', moq: '50 minimum', lead: '7 days', price: 'From AED 22', colors: ['#17171A','#234A78','#8C3035','#D3C7AA'], slot: 'v2-p-5', src: './assets/midocean/mo2645.jpg', tag: '' },
+        { name: 'RPET Phone Holder Lanyard', category: 'Trade Shows & Events', code: 'MO6925', moq: '100 minimum', lead: '10 days', price: 'From AED 14', colors: ['#17171A','#425E91','#C9484C','#E2B33A'], slot: 'v2-p-6', src: './assets/midocean/mo6925.jpg', tag: 'Eco' },
+        { name: '3W Wireless Speaker', category: 'Tech', code: 'MO9155', moq: '50 minimum', lead: '12 days', price: 'From AED 67', colors: ['#17171A','#D9D9D4','#486A59'], slot: 'v2-p-7', src: './assets/midocean/mo9155.jpg', tag: '' },
+        { name: 'Christmas Bauble Gift Box', category: 'Seasonal & Festivals', code: 'CX1603', moq: '30 minimum', lead: '20 days', price: 'From AED 41', colors: ['#A0272C','#31543D','#D2AD52'], slot: 'v2-p-8', src: './assets/midocean/cx1603.jpg', tag: 'Seasonal' },
+      ],
+    };
+  }
+}
+</script>
+
+<script>
+(function(){
+  // Mega menu: hover to open, with a grace delay so moving the pointer
+  // diagonally into the panel does not close it. Click/Escape for keyboards.
+  var closeTimer, current;
+  function close(item){ if(!item)return; item.removeAttribute('data-open');
+    var b=item.querySelector('.nav-link'); if(b) b.setAttribute('aria-expanded','false'); }
+  function open(item){
+    clearTimeout(closeTimer);
+    if (current && current !== item) close(current);
+    current = item; item.setAttribute('data-open','');
+    var b=item.querySelector('.nav-link'); if(b) b.setAttribute('aria-expanded','true');
+  }
+  function bind(){
+    var items = document.querySelectorAll('[data-mega]');
+    if (!items.length) return setTimeout(bind, 300);
+    items.forEach(function(item){
+      item.addEventListener('mouseenter', function(){ open(item); });
+      item.addEventListener('mouseleave', function(){
+        clearTimeout(closeTimer);
+        closeTimer = setTimeout(function(){ close(item); }, 180);
+      });
+      item.querySelector('.nav-link').addEventListener('click', function(e){
+        e.preventDefault();
+        if (item.hasAttribute('data-open')) close(item); else open(item);
+      });
+    });
+    document.addEventListener('keydown', function(e){ if(e.key==='Escape') close(current); });
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', bind);
+  else bind();
+})();
+</script>
+<script>
+(function(){
+  function setOpen(header, open, focusSearch){
+      var toggle = header.querySelector('.menu-toggle');
+      var drawer = header.querySelector('.mobile-drawer');
+      if (!toggle || !drawer) return;
+      header.toggleAttribute('data-menu-open', open);
+      document.body.classList.toggle('mobile-menu-open', open);
+      toggle.setAttribute('aria-expanded', String(open));
+      toggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+      drawer.setAttribute('aria-hidden', String(!open));
+      toggle.innerHTML = open
+        ? '<svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="m6 6 12 12M18 6 6 18"/></svg>'
+        : '<svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>';
+      if (open && focusSearch) setTimeout(function(){
+        var input = drawer.querySelector('input');
+        if (input) input.focus();
+      }, 260);
+  }
+  document.addEventListener('click', function(e){
+    var header = e.target.closest && e.target.closest('.site-header');
+    if (!header) return;
+    if (e.target.closest('.menu-toggle')) setOpen(header, !header.hasAttribute('data-menu-open'), false);
+    else if (e.target.closest('.search-toggle')) setOpen(header, true, true);
+    else if (e.target.closest('.mobile-nav a')) setOpen(header, false, false);
+  });
+  document.addEventListener('keydown', function(e){
+    if (e.key !== 'Escape') return;
+    var header = document.querySelector('.site-header[data-menu-open]');
+    if (header) setOpen(header, false, false);
+  });
+  window.addEventListener('resize', function(){
+    if (window.innerWidth <= 980) return;
+    var header = document.querySelector('.site-header[data-menu-open]');
+    if (header) setOpen(header, false, false);
+  });
+})();
+</script>
+<script>
+(function(){
+  // Delegated controls survive the design component's DOM re-renders.
+  var configs = [
+    {track:'.rev-track', prev:'.rev-prev', next:'.rev-next', base:3, breaks:[[640,1],[980,2]]},
+    {track:'.pslider__track', prev:'.pslider-prev', next:'.pslider-next', base:4, breaks:[[520,1],[820,2],[1100,3]]}
+  ];
+  function configFor(track){
+    return configs.find(function(c){ return track.matches(c.track); });
+  }
+  function perView(config){
+    for (var k = 0; k < config.breaks.length; k++) if (window.innerWidth <= config.breaks[k][0]) return config.breaks[k][1];
+    return config.base;
+  }
+  function apply(track, config, nextIndex){
+    if (!track || !track.children.length) return;
+    var max = Math.max(0, track.children.length - perView(config));
+    var index = Math.max(0, Math.min(max, nextIndex == null ? Number(track.dataset.index || 0) : nextIndex));
+    var gap = parseFloat(getComputedStyle(track).columnGap) || 0;
+    var step = track.children[0].getBoundingClientRect().width + gap;
+    track.dataset.index = index;
+    track.style.transform = 'translateX(' + (-index * step) + 'px)';
+    var prev = document.querySelector(config.prev);
+    var next = document.querySelector(config.next);
+    if (prev) prev.style.opacity = index === 0 ? '0.4' : '1';
+    if (next) next.style.opacity = index >= max ? '0.4' : '1';
+  }
+  function applyAll(){ configs.forEach(function(c){ apply(document.querySelector(c.track), c); }); }
+  document.addEventListener('click', function(e){
+    configs.forEach(function(c){
+      var delta = e.target.closest(c.prev) ? -1 : e.target.closest(c.next) ? 1 : 0;
+      if (!delta) return;
+      var track = document.querySelector(c.track);
+      apply(track, c, Number(track.dataset.index || 0) + delta);
+    });
+  });
+  var startX = null, touchTrack = null;
+  document.addEventListener('touchstart', function(e){
+    touchTrack = e.target.closest && e.target.closest('.rev-track,.pslider__track');
+    startX = touchTrack ? e.touches[0].clientX : null;
+  }, {passive:true});
+  document.addEventListener('touchend', function(e){
+    if (!touchTrack || startX === null || !e.changedTouches.length) return;
+    var delta = e.changedTouches[0].clientX - startX;
+    var config = configFor(touchTrack);
+    if (config && Math.abs(delta) > 45) apply(touchTrack, config, Number(touchTrack.dataset.index || 0) + (delta < 0 ? 1 : -1));
+    startX = null; touchTrack = null;
+  }, {passive:true});
+  window.addEventListener('resize', applyAll);
+  setTimeout(applyAll, 500);
+})();
+</script>
+<script>
+(function(){
+  // A closed <details> does not render its panel, so neither direction
+  // animates on its own: opening has no 0fr start frame, and closing hides
+  // the content instantly. Drive both from script.
+  var DUR = 320;
+  function collapse(item){
+    var panel = item.querySelector('.faq-panel');
+    if (item.dataset.animating) return;
+    item.dataset.animating = '1';
+    panel.style.gridTemplateRows = '1fr';
+    requestAnimationFrame(function(){
+      requestAnimationFrame(function(){
+        panel.style.gridTemplateRows = '0fr';
+        setTimeout(function(){
+          item.open = false;
+          delete item.dataset.animating;
+          panel.style.gridTemplateRows = '';
+        }, DUR);
+      });
+    });
+  }
+  document.addEventListener('click', function(e){
+    var q = e.target.closest && e.target.closest('.faq-q');
+    if (!q) return;
+    e.preventDefault();
+    var item = q.parentElement;
+    var panel = item.querySelector('.faq-panel');
+    if (item.dataset.animating) return;
+    item.dataset.animating = '1';
+    function finish(){ delete item.dataset.animating; panel.style.gridTemplateRows = ''; }
+    if (!item.open){
+      // One open at a time: close whatever else is open in the same list.
+      item.parentElement.querySelectorAll('.faq-item[open]').forEach(function(other){
+        if (other !== item) collapse(other);
+      });
+      item.open = true;
+      panel.style.gridTemplateRows = '0fr';
+      requestAnimationFrame(function(){
+        requestAnimationFrame(function(){
+          panel.style.gridTemplateRows = '1fr';
+          setTimeout(finish, DUR);
+        });
+      });
+    } else {
+      panel.style.gridTemplateRows = '1fr';
+      requestAnimationFrame(function(){
+        requestAnimationFrame(function(){
+          panel.style.gridTemplateRows = '0fr';
+          setTimeout(function(){ item.open = false; finish(); }, DUR);
+        });
+      });
+    }
+  });
+})();
+</script>
+</body>
 </html>
